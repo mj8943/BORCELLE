@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+
+  <link rel="stylesheet" href="/admin_asset/assets/css/styles.min.css">
+</head>
+<style>
+  .fhd {
+    background-color: darkgray;
+  }
+
+  #btns {
+    background-color: white;
+    color: rgb(112, 7, 7);
+    border-color: rgb(112, 7, 7);
+    cursor: rgb(112, 7, 7);
+    width: 70px;
+    font-weight: 500;
+  }
+
+  .graphs {
+    font-weight: 600;
+    color: rgb(112, 7, 7);
+  }
+  table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: cornflowerblue;
+      color: aliceblue;
+    }
+</style>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
+      <!-- Sidebar scroll-->
+      <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+          <a href="./index.html" class="text-nowrap logo-img">
+            <img src="/Borcelle white.png" width="155" alt="" style="margin-left: 20px; margin-top: 10px;" />
+          </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+          <ul id="sidebarnav">
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/dashboard" aria-expanded="false"
+                style="background-color: rgb(112, 7, 7);">
+                <span>
+                  <i class="ti ti-layout-dashboard"></i>
+                </span>
+                <span class="hide-menu">Dashboard</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/users-list" aria-expanded="false">
+                <span>
+                  <i class="ti ti-article"></i>
+                </span>
+                <span class="hide-menu">Customers</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/products" aria-expanded="false">
+                <span>
+                  <i class="ti ti-shopping-cart"></i>
+                </span>
+                <span class="hide-menu">Products</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/categories" aria-expanded="false">
+                <span>
+                  <i class="ti ti-cards"></i>
+                </span>
+                <span class="hide-menu">Categories</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/orders" aria-expanded="false">
+                <span>
+                  <i class="ti ti-file-description"></i>
+                </span>
+                <span class="hide-menu">Orders</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/product-coupon" aria-expanded="false">
+                <span>
+                  <i class="ti ti-tag"></i>
+                </span>
+                <span class="hide-menu">Coupons</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/product-offer" aria-expanded="false">
+                <span>
+                  <i class="ti ti-discount"></i>
+                </span>
+                <span class="hide-menu">Offer</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/banners" aria-expanded="false" style="color: black;">
+                <span>
+                  <i class="ti ti-aperture"></i>
+                </span>
+                <span class="hide-menu">Banner</span>
+              </a>
+            </li>
+            <li class="sidebar-item" style="margin-top: 30px; width: 180px; margin-left: 17px;">
+              <a class="sidebar-link" href="/admin/logout" aria-expanded="false"
+                style="background-color: rgb(112, 7, 7); padding-left: 59px;">
+                <span class="hide-menu" style="color: aliceblue;">Logout</span>
+              </a>
+            </li>
+            <!-- End Sidebar navigation -->
+      </div>
+      <!-- End Sidebar scroll-->
+    </aside>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      <!--  Header Start -->
+      <header class="app-header">
+
+      </header>
+      <!--  Header End -->
+      <div class="container-fluid">
+        <!--  Row 1 -->
+        <div class="row">
+          <div class="col-lg-8 d-flex align-items-strech">
+            <div class="card w-100">
+              <div class="card-body">
+                <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
+                  <div class="mb-3 mb-sm-0">
+                    <h5 class="card-title fw-semibold graphs">SALES OVERVIEW</h5>
+                  </div>
+                  <div class="col-md-6 p-1">
+                    <div class="time-container">
+                      <button class="time-frames time-frame-active" data-time="today" id="btns">Today</button> &nbsp;
+                      <button class="time-frames" data-time="week" id="btns">Week</button>&nbsp;
+                      <button class="time-frames" data-time="month" id="btns">Month</button>&nbsp;
+                      <button class="time-frames" data-time="year" id="btns">Year</button>&nbsp;
+                    </div>
+                  </div>
+                </div>
+                <div id="chart"></div>
+                <div>
+                  <div style="width: 100%; background-color: rgb(112, 7, 7); height: 40px; ">
+                    <h4
+                      style="color: azure; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; padding-left: 270px; padding-top: 6px;">
+                      Sales Report</h4>
+                  </div>
+                  <br>
+                  <br>
+
+                  <label for="startDate">Start Date:&nbsp;</label>
+                  <input name="startDate" type="date" style="width: 250px; height: 30px; padding-left: 8px;"
+                    id="startDate">
+                  <label for="endDate" style="margin-left: 30px;">End Date:&nbsp;</label>
+                  <input name="endDate" type="date" style="width: 250px; height: 30px; padding-left: 8px;" id="endDate">
+                  <br>
+                  <br>
+                  <br>
+                  <button type="button" id="downloadReport" onclick="download()"
+                    style="width: 110px; height: 25px; margin-left: 280px; background-color: rgb(112, 7, 7); color: azure; font-weight: 600; border: 0;">Download</button>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="row">
+              <div class="col-lg-12">
+                <!-- Yearly Breakup -->
+                <div class="card overflow-hidden">
+                  <div class="card-body p-4">
+                    <h5 class="card-title mb-9 fw-semibold graphs">PAYMENT METHODS</h5>
+                    <div class="row align-items-center">
+                      <div class="col-8">
+                        <!-- <h4 class="fw-semibold mb-3" >&#8377;<span id="amountTotal"></span></h4> -->
+                        <div class="d-flex align-items-center mb-3">
+                          <!-- <span
+                                                  class="me-1 rounded-circle bg-light-success round-20 d-flex align-items-center justify-content-center">
+                                                  <i class="ti ti-arrow-up-left text-success"></i>
+                                              </span> -->
+                          <!-- <p class="text-dark me-1 fs-3 mb-0">+9%</p>
+                                              <p class="fs-3 mb-0">last year</p> -->
+                        </div>
+                        <div class="d-flex align-items-center">
+                          <div class="me-3">
+
+                            <span class="round-8 rounded-circle me-2 d-inline-block"
+                              style="background-color: rgb(112, 7, 7);"></span>
+                            <span class="fs-2" id="cash">COD</span>
+                          </div>
+                          <div class="me-3">
+                            <span class="round-8  rounded-circle me-2 d-inline-block"
+                              style="background-color: darkgray;"></span>
+                            <span class="fs-2" id="onli">Paypal</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <div class="d-flex justify-content-center">
+                          <div id="breakup"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <!-- Monthly Earnings -->
+
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row alig n-items-start">
+                      <div class="col-8">
+                        <h5 class="card-title mb-9 fw-semibold graphs"> TOTAL EARNINGS </h5>
+
+                        <h4 class="fw-semibold mb-3" style="color: rgb(112, 7, 7);">&#8377;<span
+                            id="AmountTotal"></span></h4>
+                        <div class="d-flex align-items-center pb-1">
+                          <!-- <span
+                                                  class="me-2 rounded-circle bg-light-danger round-20 d-flex align-items-center justify-content-center">
+                                                  <i class="ti ti-arrow-down-right text-danger"></i>
+                                              </span> -->
+                          <!-- <p class="text-dark me-1 fs-3 mb-0">+9%</p>
+                                              <p class="fs-3 mb-0">last year</p> -->
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <div class="d-flex justify-content-end">
+                          <!-- <div
+                                                  class="text-white bg-secondary rounded-circle p-6 d-flex align-items-center justify-content-center">
+                                                  <h1 id="cust"></h1>
+                                                  <i class="ti ti-currency-dollar fs-6"></i>
+                                              </div> -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="earning"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 style="font-weight: 700; color: rgb(112, 7, 7); text-align: center;">TOP SELLING PRODUCTS</h3>
+          <table>
+            <thead>
+              <th style="background-color: rgb(112, 7, 7);text-align: center; color: aliceblue;">No.</th>
+              <th style="background-color: rgb(112, 7, 7);text-align: center; color: aliceblue">Product ID</th>
+              <th style="background-color: rgb(112, 7, 7);text-align: center; color: aliceblue"> Product Name</th>
+              <th style="background-color: rgb(112, 7, 7);text-align: center; color: aliceblue">Sellings</th>
+            </thead>
+            <tbody>
+              <% let serialNumber=1; %>
+                <% topSellingProducts.forEach(product=> { %>
+                  <tr>
+                    <td>
+                      <%= serialNumber %>
+                    </td>
+                    <td>
+                      <%= product.productId %>
+                    </td>
+                    <td>
+                      <% product.productDetails.forEach(productDetail=> { %>
+                        <%= productDetail.name %>
+                          <% }) %>
+                    </td>
+                    <td>
+                      <%= product.totalQuantity %>
+                    </td>
+                  </tr>
+                  <% serialNumber++; %>
+                    <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="/admin_asset/assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="/admin_asset/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/admin_asset/assets/js/sidebarmenu.js"></script>
+  <script src="/admin_asset/assets/js/app.min.js"></script>
+  <script src="/admin_asset/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+  <script src="/admin_asset/assets/libs/simplebar/dist/simplebar.js"></script>
+  <script src="/admin_asset/assets/js/dashboard.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.20/jspdf.plugin.autotable.min.js"></script>
+
+
+  <script>
+    function download() {
+      const start = document.getElementById('startDate').value;
+      const end = document.getElementById('endDate').value;
+  
+      const currentDate = new Date();
+      currentDate.setHours(23, 59, 59, 999);
+  
+      const startDate = new Date(start);
+      const endDate = new Date(end);
+  
+      if (start && end && startDate <= currentDate && endDate <= currentDate && startDate <= endDate) {
+        console.log("Start date:", start);
+        console.log("End date:", end);
+        const data = { start, end };
+  
+        fetch('/admin/dashboard/sales-report', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+          .then(response => {
+            if (response.ok) {
+              return response.json(); // Parse the JSON response
+            } else {
+              throw new Error('Failed to generate sales report');
+            }
+          })
+          .then(data => {
+            let orders = data.orders;
+            console.log('Received orders:', orders);
+  
+            // Create a new jsPDF instance
+            const doc = new window.jspdf.jsPDF('a4');
+  
+            // Define the columns for the table
+            const columns = ['Ordered Date', 'Order ID', 'Customer Name', 'Variant', 'Quantity', 'Address', 'Payment'];
+  
+            // If there are no orders, add a row with a message
+            if (orders.length === 0) {
+              doc.autoTable({
+                head: [columns],
+                body: [],
+              });
+              doc.text("No sales in this time period", 105, 70, { align: "center" });
+            } else {
+              // Define rows as arrays of data
+              const rows = orders.map(order => {
+                let sample = new Date(order.orderedDate)
+                return [
+                  sample.toLocaleDateString(),
+                  order._id,
+                  order.user.name,
+                  order.items.map(item => item.variant).join(', '),
+                  isNaN(order.items.reduce((acc, curr) => acc + curr.quantity, 0)) ? 'NaN' : order.items.reduce((acc, curr) => acc + curr.quantity, 0),
+                  `${order.userAddress.house_no}, ${order.userAddress.area}, ${order.userAddress.city}, ${order.userAddress.state}, ${order.userAddress.pincode}`,
+                  order.payment,
+                ]
+              });
+  
+              doc.autoTable({
+                head: [columns],
+                body: rows,
+              });
+  
+              // Generate summary paragraph
+              const summary = `Summary:\n\nDuring the period from ${start} to ${end}, a total of ${orders.length} orders were placed.\n\nThe total quantity of items ordered was ${orders.reduce((acc, curr) => acc + (isNaN(curr.items.reduce((acc, curr) => acc + curr.quantity, 0)) ? 0 : curr.items.reduce((acc, curr) => acc + curr.quantity, 0)), 0)}.`;
+  
+              // Append summary paragraph to the PDF
+              doc.setFontSize(12);
+              doc.text(summary, 14, doc.autoTable.previous.finalY + 10);
+  
+              // Save the PDF
+              doc.save('sales_report.pdf');
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error.message);
+          });
+      } else {
+        // Check which condition failed and display appropriate error message
+        if (!start || !end) {
+          alert("Please select both start and end dates.");
+        } else if (start > end) {
+          alert("End date should be greater than or equal to the start date.");
+        } else if (startDate > currentDate) {
+          alert("Start date cannot be greater than the current date.");
+        } else {
+          alert("Invalid date range. Please select a valid range.");
+        }
+      }
+    }
+  </script>
+  
+
+
+
+
+
+
+
+</body>
+
+</html>

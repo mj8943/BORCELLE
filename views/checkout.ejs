@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Male_Fashion Template">
+    <meta name="keywords" content="Male_Fashion, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BORCELLE</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="/user_asset/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/user_asset/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/user_asset/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/user_asset/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="/user_asset/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/user_asset/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/user_asset/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/user_asset/css/style.css" type="text/css">
+
+
+    <style>
+        .parallelogram {
+            width: 140px;
+            height: 92px;
+            margin-top: 1px;
+            background-color: rgb(112, 20, 20);
+            transform: skew(-18deg);
+        }
+
+        #staticBackdropLabel {
+            color: aliceblue;
+            font-weight: 600;
+        }
+
+        .selected-address-card {
+            background-color: rgb(112, 20, 20);
+            color: #fff;
+        }
+
+        .selected-address-card .card-text {
+            color: #fff;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__option">
+            <div class="offcanvas__links">
+                <a href="#">Sign in</a>
+                <a href="#">FAQs</a>
+            </div>
+            <div class="offcanvas__top__hover">
+                <span>Usd <i class="arrow_carrot-down"></i></span>
+                <ul>
+                    <li>USD</li>
+                    <li>EUR</li>
+                    <li>USD</li>
+                </ul>
+            </div>
+        </div>
+        <div class="offcanvas__nav__option">
+            <a href="#" class="search-switch"><img src="user_asset/img/icon/search.png" alt=""></a>
+            <a href="#"><img src="user_asset/img/icon/heart.png" alt=""></a>
+            <a href="/shoping-cart"><img src="user_asset/img/icon/cart.png" alt=""> <span>0</span></a>
+            <div class="price">$0.00</div>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        <div class="offcanvas__text">
+            <p>Free shipping, 30-day return or refund guarantee.</p>
+        </div>
+    </div>
+    <!-- Offcanvas Menu End -->
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="header__top" style="background-color: rgb(112, 20, 20);">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-7">
+                        <div class="header__top__left">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-5">
+                        <div class="header__top__right">
+                            <div class="header__top__links">
+                            </div>
+                            <div class="header__top__hover">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                    <div class="parallelogram">
+                        <img src="borcelle real.png" style="width: 100px; margin-left: 15px; margin-top: 8px;">
+                    </div> <!-- Other scripts -->
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <nav class="header__menu mobile-menu">
+                        <ul>
+                            <li><a href='/' style="color: rgb(112, 20, 20); font-weight: 700;">Home</a>
+                            </li>
+                            <li class="active"><a href='/shops'
+                                    style="color: rgb(112, 20, 20); font-weight: 700;">Shop</a></li>
+
+                            <li><a href="/about" style="color: rgb(112, 20, 20); font-weight: 700;">About</a>
+                            </li>
+                            <li><a href="/blog" style="color: rgb(112, 20, 20); font-weight: 700;">Blog</a></li>
+                            <li><a href=" /contact" style="color: rgb(112, 20, 20); font-weight: 700;">Contact</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div class="header__nav__option" style="display: flex; margin-left: 30px;">
+                        <a href="/shoping-cart"><img src="user_asset/img/icon/cart.png" alt=""></a>
+                        <div style="display: flex;">
+                            <a href="/user-profile"><img src="user.png" alt="" style="width: 25px;"></a>
+                            <% if(user){ %>
+                                <h5 style="font-weight: 700; color: rgb(112, 20, 20);">
+                                    <%= user.name %>
+                                </h5>
+                                <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas__open"><i class="fa fa-bars"></i></div>
+        </div>
+    </header>
+
+
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__text">
+                        <h4>Check Out</h4>
+                        <div class="breadcrumb__links">
+                            <a href="/">Home</a>
+                            <a href="/shops">Shop</a>
+                            <span>Check Out</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Checkout Section Begin -->
+    <section class="checkout spad">
+        <div class="container">
+            <div class="checkout__form">
+                <form action="#">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-6">
+                            <h6 class="checkout__title">Billing Address</h6>
+
+                            <% if (user.address && Array.isArray(user.address) && user.address.length> 0) { %>
+                                <div class="row">
+                                    <% user.address.forEach((address, index)=> { %>
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                            <div class="card" id="addressCard<%= index %>">
+                                                <input type="hidden" value="<%= address._id %>">
+                                                <div class="card-body"
+                                                    style="border-style: inset; border-color: rgb(112, 20, 20);">
+                                                    <h5 class="card-title">
+                                                        <%= address.fullname %>
+                                                    </h5>
+                                                    <p class="card-text">
+                                                        <%= address.house_no %>, <%= address.city %>, <%= address.area
+                                                                    %>
+                                                    </p>
+                                                    <p class="card-text">
+                                                        <%= address.state %>, <%= address.pincode %>
+                                                    </p>
+                                                    <p class="card-text">
+                                                        <%= address.mobile %>
+                                                    </p>
+                                                    <button class="btn" onclick="selectAddress(`<%= index %>`)"
+                                                        style="color: rgb(112, 20, 20); font-weight: 700; border: 0;  margin-left: 200px;"
+                                                        type="button">
+                                                        Choose
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <br>
+                                        </div>
+                                        <% }) %>
+
+
+                                </div>
+                                <% } else{ %>
+                                    <p style="color: rgb(112, 20, 20);">No address found for <%= user.name %>
+                                    </p>
+                                    <% } %>
+
+                                        <br>
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn" data-bs-toggle="modal"
+                                            data-bs-target="#staticBackdrop"
+                                            style="background-color: rgb(112, 20, 20); color: #ffffff; border-radius: 0;">
+                                            Add address
+                                        </button>
+
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="checkout__order">
+                                <h4 class="order__title">Your order</h4>
+                                <div class="checkout__order__products">Product <span>Total</span></div>
+                                <ul class="checkout__total__products">
+
+
+                                    <% let totalPrice=0; %>
+
+                                        <% products.items.forEach(product=> { %>
+                                            <% if(product.productId.is_listed==true ){ %>
+                                                <li>
+                                                    <%= product.productId.name %> x <%= product.quantity %> <span>
+                                                                &#8377;
+                                                                <% if(product.productId.finalPrice){ %>
+                                                                    <%= product.productId.finalPrice * product.quantity
+                                                                        %>
+                                                                        <% }else{ %>
+                                                                            <%= product.productId.price *
+                                                                                product.quantity %>
+                                                                                <% } %>
+                                                            </span>
+                                                </li>
+                                                <% if(product.productId.finalPrice){ %>
+                                                    <% totalPrice +=product.productId.finalPrice * product.quantity %>
+                                                        <% }else{ %>
+                                                            <% totalPrice +=product.productId.price * product.quantity
+                                                                %>
+                                                                <% } %>
+                                                                    <% } %>
+                                                                        <% }) %>
+                                </ul>
+                                <ul class="checkout__total__all">
+                                    <li>Subtotal <span>&#8377; <%= totalPrice %></span></li>
+                                    <% if(coupon){ %>
+                                        <li>Coupon <span id="couponCode">&#8377; <%= coupon.discountAmount %></span>
+                                        </li>
+                                        <% totalPrice=totalPrice - coupon.discountAmount %>
+                                            <% } %>
+                                                <li>Total <span id="total">&#8377; <%= totalPrice %></span></li>
+                                </ul>
+                                <h5>Payment method</h5>
+                                <br>
+                                <div class="checkout__input__radio">
+                                    <label for="payment">
+                                        <input type="radio" id="payment" name="paymentMethod" value="COD">
+                                        Cash on delivery
+                                    </label>
+                                </div>
+                                <div class="checkout__input__radio">
+                                    <label for="paypal">
+                                        <input type="radio" id="paypal" name="paymentMethod" value="paypal">
+                                        Paypal
+                                    </label>
+                                </div>
+                                <div class="checkout__input__radio">
+                                    <label for="wallet">
+                                        <input type="radio" id="wallet" name="paymentMethod" value="wallet">
+                                        Wallet money
+                                    </label>
+                                </div>
+                                <button type="button" class="site-btn" style="background-color: rgb(112, 20, 20);"
+                                    onclick="checkPlaceOrder()">PLACE
+                                    ORDER</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header" style="background-color: rgb(112, 20, 20);">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Enter new address
+                                </h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    <form id="addressForm" method="POST" action="/addaddress">
+                                        <input type="text" name="fullname" placeholder="Full Name (required)" required>
+                                        <input type="number" name="mobile" placeholder="Phone number (required)"
+                                            required>
+                                        <input type="text" name="pincode" placeholder="Pincode (required)" required>
+                                        <input type="text" name="city" placeholder="City (required)" required>
+                                        <input type="text" name="state" placeholder="State (required)" required>
+                                        <input type="text" name="house_no"
+                                            placeholder="House No, Building Name (required)" required>
+                                        <input type="text" name="area" placeholder="Road Name, Area, Colony (required)"
+                                            required>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn"
+                                    style="background-color: rgb(112, 20, 20); color: aliceblue;"
+                                    onclick="submitForm()">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Checkout Section End -->
+
+    <!-- Footer Section Begin -->
+    <footer class="footer" style="background-color: rgb(112, 20, 20);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <a href="#"><img src="borcelle real.png" alt="" style="height: 180px;"></a>
+                        </div>
+                        <p style="margin-top: 30px;">The customer is at the heart of our unique business model, which
+                            includes design.</p>
+                    </div>
+                </div>
+                <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>Shopping</h6>
+                        <ul style="color: #ffffff74; cursor: context-menu;">
+                            <li>Clothing Store</li>
+                            <li>Mens Store</li>
+                            <li>Winter clothes</li>
+                            <li>Inner wears</li>
+                            <li>Trending Fashions</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>Available</h6>
+                        <ul style="color: #ffffff74; cursor: context-menu;">
+                            <li>Contact Us</li>
+                            <li>Payment Methods</li>
+                            <li>Delivary</li>
+                            <li>Return & Exchanges</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>Borcelle men's fashion</h6>
+                        <div class="footer__newslatter">
+                            <p>
+                                Stay connected with Borcelle Men's Fashion to stay updated on the latest trends,
+                                exclusive offers, and exciting events! .</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="footer__copyright__text">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <p>
+                            Visit for the best outlook Thank you<i class="fa fa-heart-o" aria-hidden="true"></i> by <a
+                                href="https://colorlib.com" target="_blank">BORCELLE</a>
+                        </p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search End -->
+
+    <!-- Js Plugins -->
+    <script src="/user_asset/js/jquery-3.3.1.min.js"></script>
+    <script src="/user_asset/js/bootstrap.min.js"></script>
+    <script src="/user_asset/js/jquery.nice-select.min.js"></script>
+    <script src="/user_asset/js/jquery.nicescroll.min.js"></script>
+    <script src="/user_asset/js/jquery.magnific-popup.min.js"></script>
+    <script src="/user_asset/js/jquery.countdown.min.js"></script>
+    <script src="/user_asset/js/jquery.slicknav.js"></script>
+    <script src="/user_asset/js/mixitup.min.js"></script>
+    <script src="/user_asset/js/owl.carousel.min.js"></script>
+    <script src="/user_asset/js/main.js"></script>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <script>
+        let orderId;
+
+        var addressId;
+
+        function selectAddress(addressIndex) {
+            // Remove the 'selected-address-card' class from all cards
+            var cards = document.querySelectorAll('.card');
+            cards.forEach(function (card) {
+                card.classList.remove('selected-address-card');
+            });
+
+            // Add the 'selected-address-card' class to the clicked card
+            var selectedCard = document.getElementById('addressCard' + addressIndex);
+            selectedCard.classList.add('selected-address-card');
+
+            // Get the hidden input value (address._id) by using querySelector
+            addressId = document.querySelector('#addressCard' + addressIndex + ' input[type="hidden"]').value;
+
+            console.log('Selected Address ID:', addressId);
+        }
+
+
+
+        function checkPlaceOrder() {
+            const selectedPaymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+            if (!addressId || !selectedPaymentMethod) {
+                alert('Please choose both an address and a payment method.');
+                return
+            }
+
+            const totalPriceElement = document.getElementById('total');
+            const totalPrice = totalPriceElement.innerText.replace('₹', '');
+
+            if (selectedPaymentMethod == "paypal") {
+                console.log("payapl aan");
+                const amount = document
+                    .querySelector("#total")
+                    .innerText.replace("₹", "");
+                console.log(orderId);
+                setupRazorpay(orderId, amount);
+            } else if (selectedPaymentMethod == "COD") {
+                placeOrder(totalPrice)
+            } else if (selectedPaymentMethod == "wallet") {
+                placeOrder(totalPrice)
+            }
+        }
+
+        function setupRazorpay(orderId, amount) {
+            console.log("setupRazorpay");
+            var options = {
+                key: "rzp_test_Mufod828rplfnf",
+                amount: amount * 100,
+                currency: "INR",
+                name: "BORCELLE fashion",
+                description: "Test Transaction",
+                image:"Borcelle white.png",
+                order_id: orderId,
+                handler: async function (response) {
+                    const paymentData = {
+                        payment_id: response.razorpay_payment_id,
+                        order_id: response.razorpay_order_id,
+                        signature: response.razorpay_signature,
+                    };
+                    let amount = document
+                        .querySelector("#total")
+                        .innerText.replace("₹", "");
+                    console.log(amount);
+                    try {
+                        console.log("verifyPayment");
+                        const response = await fetch("/verify-payment", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify(paymentData),
+                        });
+
+                        if (response.ok) {
+                            placeOrder(amount)
+                        }
+                    } catch (error) {
+                        console.log(error);
+                    }
+                },
+                theme: {
+                    color: "#3399cc",
+                },
+            };
+            var rzp1 = new Razorpay(options);
+
+            rzp1.on("payment.failed", function (response) {
+                alert(response.error.description);
+            });
+            rzp1.open();
+        }
+
+
+        function placeOrder(totalPrice) {
+            const selectedPaymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+            if (!addressId || !selectedPaymentMethod) {
+                alert('Please choose both an address and a payment method.');
+                return
+            }
+            let couponValue = null;
+            if (document.getElementById('couponCode')) {
+
+                couponValue = document.getElementById('couponCode').innerText.replace('₹', '');
+            }
+
+            const coupon = couponValue;
+
+            var orderData = {
+                addressId: addressId,
+                paymentMethod: selectedPaymentMethod,
+                totalPrice: totalPrice,
+                coupon: coupon
+            };
+
+            fetch('/order-place', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(orderData)
+            }).then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    return response.json().then(data => {
+                        alert(data.message || 'Failed to place order');
+                    });
+                }
+            })
+
+                .then(data => {
+                    console.log('Order placed successfully:', data);
+
+                    if (data.success && data.redirect) {
+                        window.location.href = data.redirect;
+                        console.log('Redirecting to:', data.redirect);
+                    } else {
+                        console.error('Unexpected server response:', data);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error placing order:', error);// Show error message in alert
+                });
+
+        }
+    </script>
+
+    <script>
+        function submitForm() {
+            var form = document.getElementById("addressForm");
+
+            form.submit();
+        }
+    </script>
+
+    <script>
+        async function createOrder() {
+            try {
+                console.log("payment working");
+                let amount = document
+                    .querySelector("#total")
+                    .innerText.replace("₹", "");
+                amount = amount * 100
+                console.log(amount);
+                const response = await fetch("/create/orderId", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ amount }),
+                    redirect: "follow",
+                });
+                const result = await response.json();
+
+                orderId = result.orderId;
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+
+        document.addEventListener("DOMContentLoaded", createOrder())
+    </script>
+
+    <script>
+        function submitForm() {
+            // Get the form element
+            var form = document.getElementById("addressForm");
+
+            // Get form fields
+            var fullname = form.querySelector('input[name="fullname"]').value.trim();
+            var mobile = form.querySelector('input[name="mobile"]').value.trim();
+            var pincode = form.querySelector('input[name="pincode"]').value.trim();
+            var city = form.querySelector('input[name="city"]').value.trim();
+            var state = form.querySelector('input[name="state"]').value.trim();
+            var house_no = form.querySelector('input[name="house_no"]').value.trim();
+            var area = form.querySelector('input[name="area"]').value.trim();
+
+            // Simple form validation
+            if (!fullname || !mobile || !pincode || !city || !state || !house_no || !area) {
+                alert("Please fill in all fields.");
+                return;
+            }
+
+            // Submit the form
+            form.submit();
+        }
+
+    </script>
+</body>
+
+</html>

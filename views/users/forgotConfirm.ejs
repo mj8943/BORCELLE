@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .lab {
+        color: white;
+    }
+
+    .insert {
+        height: 20px;
+        width: 380px;
+    }
+
+    .submit {
+        color: rgb(112, 7, 7);
+        font-weight: 600;
+    }
+
+    .profile {
+        margin-top: 20px;
+        width: 120px;
+        margin-left: 700px;
+        color: antiquewhite;
+        background-color: rgb(112, 7, 7);
+        border-color: antiquewhite;
+        height: 30px;
+    }
+</style>
+
+<body>
+    <div style="background-color: rgb(112, 7, 7); display:flex; padding: 60px; padding-left: 300px; margin-top: 100px;">
+        <div>
+            <img src="borcelle real.png" alt="logo" style="height: 250px;">
+        </div>
+        <div style="margin-left: 200px;">
+            <h3 style="color: antiquewhite;">CHANGE PASSWORD</h3>
+            <form method="post" id="formData">
+                <input type="hidden" name="email" id="email" value="<%= email %>">
+                <label for="oldPass" class="lab">Enter New password&nbsp;</label><br>
+                <input type="password" name="newPass" id="newP" required class="insert"><br>
+                <label for="conPass" class="lab">Confirm New password&nbsp;</label><br>
+                <input type="password" name="conPass" id="conNew" required class="insert"><br><br>
+                <button class="submit" type="button" style="height: 25px; width: 100px;"
+                    onclick="submitForm()">Change</button>
+            </form>
+        </div>
+    </div>
+    <div>
+    </div>
+
+    <script>
+        function submitForm() {
+    const newPass = document.getElementById('newP').value;
+    const conPass = document.getElementById('conNew').value;
+    const email = document.getElementById('email').value;
+
+    if (newPass !== conPass) {
+        alert("Passwords do not match");
+        return;
+    }
+
+    fetch('/forgot-confirm', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ newPass, conPass, email }),
+    })
+    .then(response => {
+        if (response.ok) {
+            window.location.href= '/login';
+        } else {
+            alert('error on changing password')
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error); /// redirect or handle error as needed
+    });
+}
+
+    </script>
+</body>
+
+</html>

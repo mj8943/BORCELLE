@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Male_Fashion Template">
+    <meta name="keywords" content="Male_Fashion, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BORCELLE</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="user_asset/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="user_asset/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="user_asset/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="user_asset/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="user_asset/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="user_asset/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="user_asset/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="user_asset/css/style.css" type="text/css">
+</head>
+
+<style>
+    .parallelogram {
+        width: 140px;
+        height: 92px;
+        margin-top: 1px;
+        background-color: rgb(112, 20, 20);
+        transform: skew(-18deg);
+        /* Adjust as needed */
+    }
+
+    .pro-qty-2 {
+        display: flex;
+        align-items: center;
+        /* Align items vertically in the center */
+    }
+
+    .quantity-decrease,
+    .quantity-increase {
+        font-weight: 800;
+        color: rgb(112, 20, 20);
+    }
+
+    .quantity-input {
+        font-weight: 700;
+    }
+
+    .quantity-decrease {
+        width: 25px;
+    }
+
+    .quantity-decrease,
+    .quantity-input,
+    .quantity-increase {
+        margin: 0;
+        /* Remove default button margin */
+    }
+
+    .pro-qty-2 button,
+    .pro-qty-2 input {
+        float: left;
+        /* margin-right: 5px; Adjust the margin as needed */
+        background-color: #fff;
+        border-radius: 14px;
+        border-color: rgb(112, 20, 20);
+        height: 27px;
+    }
+
+    .apl {
+        border-left: 0;
+        border-color: rgba(0, 0, 0, 0.09);
+    }
+
+    .coupon-li {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .checkbtn {
+        border: 0;
+        height: 40px;
+        width: 100%;
+    }
+</style>
+
+<body>
+
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__option">
+            <div class="offcanvas__links">
+                <a href="#">Sign in</a>
+                <a href="#">FAQs</a>
+            </div>
+            <div class="offcanvas__top__hover">
+                <span>Usd <i class="arrow_carrot-down"></i></span>
+                <ul>
+                    <li>USD</li>
+                    <li>EUR</li>
+                    <li>USD</li>
+                </ul>
+            </div>
+        </div>
+        <div class="offcanvas__nav__option">
+            <a href="#" class="search-switch"><img src="user_asset/img/icon/search.png" alt=""></a>
+            <a href="#"><img src="user_asset/img/icon/heart.png" alt=""></a>
+            <a href="/shoping-cart"><img src="user_asset/img/icon/cart.png" alt=""> <span>0</span></a>
+            <div class="price">$0.00</div>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        <div class="offcanvas__text">
+            <p>Free shipping, 30-day return or refund guarantee.</p>
+        </div>
+    </div>
+    <!-- Offcanvas Menu End -->
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="header__top" style="background-color: rgb(112, 20, 20);">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-7">
+                        <div class="header__top__left">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-5">
+                        <div class="header__top__right">
+                            <div class="header__top__links">
+                            </div>
+                            <div class="header__top__hover">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                    <div class="parallelogram">
+                        <img src="borcelle real.png" style="width: 100px; margin-left: 15px; margin-top: 8px;">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <nav class="header__menu mobile-menu">
+                        <ul>
+                            <li><a href='/' style="color: rgb(112, 20, 20); font-weight: 700;">Home</a>
+                            </li>
+                            <li class="active"><a href='/shops'
+                                    style="color: rgb(112, 20, 20); font-weight: 700;">Shop</a></li>
+                            <li><a href="/about" style="color: rgb(112, 20, 20); font-weight: 700;">About</a></li>
+                            <li><a href="/blog" style="color: rgb(112, 20, 20); font-weight: 700;">Blog</a></li>
+                            <li><a href="/contact" style="color: rgb(112, 20, 20); font-weight: 700;">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div class="header__nav__option" style="display: flex; margin-left: 30px;">
+                        <a href="/shoping-cart"><img src="user_asset/img/icon/cart.png" alt=""></a>
+                        <div style="display: flex;">
+                            <a href="/user-profile"><img src="user.png" alt="" style="width: 25px;"></a>
+                            <% if(user){ %>
+                                <h5 style="font-weight: 700; color: rgb(112, 20, 20);">
+                                    <%= user.name %>
+                                </h5>
+                                <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas__open"><i class="fa fa-bars"></i></div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__text">
+                        <h4>Shopping Cart</h4>
+                        <div class="breadcrumb__links">
+                            <a href="/">Home</a>
+                            <a href="/shops">Shop</a>
+                            <span>Shopping Cart</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Shopping Cart Section Begin -->
+    <section class="shopping-cart spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="shopping__cart__table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% let totalPrice=0 %>
+                                    <% if(products.items.length==0){ %>
+                                        <td>
+                                            <h5 style="color: red; ">Your cart is empty , Add Products !!</h5>
+                                        </td>
+                                        <% } %>
+
+
+                                            <% products.items.forEach(product=> { %>
+                                                <% if(product.productId.is_listed==false){ %>
+
+                                                    <td class="product__cart__item">
+                                                        <div class="product__cart__item__pic">
+                                                            <img src="/productImages/<%= product.productId.image[0] %>"
+                                                                alt="" style="height: 80px; width: 60px;">
+                                                        </div>
+                                                        <div class="product__cart__item__text">
+                                                            <h6>
+                                                                <%= product.productId.name %>&nbsp;&nbsp;(<%=
+                                                                        product.variant %>)
+                                                            </h6>
+                                                            <% if(product.productId.finalPrice){ %>
+                                                                <h5>&#8377;<%= product.productId.finalPrice %>
+                                                                </h5>
+                                                                <% }else{ %>
+                                                                    <h5>&#8377;<%= product.productId.price %>
+                                                                    </h5>
+                                                                    <% } %>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <h5 style="color: red;">Currently Unavailable</h5>
+                                                    </td>
+                                                    <% }else{ %>
+                                                        <td class="product__cart__item">
+                                                            <div class="product__cart__item__pic">
+                                                                <img src="/productImages/<%= product.productId.image[0] %>"
+                                                                    alt="" style="height: 80px; width: 60px;">
+                                                            </div>
+                                                            <div class="product__cart__item__text">
+                                                                <h6>
+                                                                    <%= product.productId.name %>&nbsp;&nbsp;(<%=
+                                                                            product.variant %>)
+                                                                </h6>
+                                                                <% if(product.productId.finalPrice){ %>
+                                                                    <h5 style="color: red;">&#8377;<%= product.productId.finalPrice %>
+                                                                    </h5>
+                                                                    <% }else{ %>
+                                                                        <h5>&#8377;<%= product.productId.price %>
+                                                                        </h5>
+                                                                        <% } %>
+                                                            </div>
+                                                        </td>
+                                                        <td class="quantity__item">
+                                                            <div class="quantity">
+                                                                <div class="pro-qty-2">
+                                                                    <button data-item-id="<%= product._id %>"
+                                                                        class="quantity-decrease"
+                                                                        style="display: inline-block;">-</button>
+                                                                    <input type="text" value="<%= product.quantity %>"
+                                                                        class="quantity-input"
+                                                                        style="display: inline-block; width: 30px; text-align: center;">
+                                                                    <button data-item-id="<%= product._id %>"
+                                                                        class="quantity-increase"
+                                                                        style="display: inline-block; height: 25px;">+</button>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="cart__price">&#8377;<span id="price">
+                                                            <% if(product.productId.finalPrice){ %>
+                                                                <%= product.productId.finalPrice * product.quantity %>
+                                                            <% }else{ %>
+                                                                <%= product.productId.price * product.quantity %>
+                                                                <% } %>
+                                                            </span></td>
+                                                        <td class="cart__close">
+
+                                                            <button data-itemId="<%= product._id %>"
+                                                                class="fa fa-close removeButton"
+                                                                style="color: #fff; background-color: rgba(112, 20, 20, 0.921); cursor: pointer;"></button>
+                                                        </td>
+                                                        </tr>
+                                                        <% if(product.productId.finalPrice){ %>
+                                                            <% totalPrice +=product.productId.finalPrice * product.quantity %>
+                                                        <% }else{ %>
+                                                            <% totalPrice +=product.productId.price * product.quantity %>
+                                                            <% } %>
+                                                            <% } %>
+                                                                <% }) %>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="continue__btn">
+                                <a href="/shops"
+                                    style="color: rgb(112, 20, 20); border-color: rgb(112, 20, 20);">Continue
+                                    Shopping</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 d-flex" style="flex-direction: column;">
+                    <div style="display: flex;">
+                        <div style="margin-bottom: 20px;">
+                            <h6 style="font-weight: 600; margin-bottom: 20px;">Discount codes</h6>
+                            <select id="couponOffer">
+                                <option value="">Select Coupon Code</option>
+                                <% coupon.forEach(coupon=>{ %>
+                                    <option value="<%= coupon.couponCode %>">
+                                        <%= coupon.couponCode %>
+                                    </option>
+                                    <% }) %>
+                            </select>
+                            <% coupon.forEach(coupon=>{ %>
+                                <input type="hidden" value="<%= coupon.discountAmount %>" id="<%= coupon.couponCode %>"
+                                    data-minimum="<%= coupon.minimumSpend %>">
+                                <% }) %>
+
+                        </div>
+                        <button class="apl"
+                            style="height: 40px; margin-top: 40px; width: 100px; color: rgb(112, 20, 20); font-weight: 600;"
+                            onclick="couponApply()">Apply</button>
+                        <button class="apl" id="couponRemove" style="height: 40px; margin-top: 40px; width: 100px; color: rgb(112, 20, 20); font-weight: 600;
+                            display: none;" onclick="removeCoupon()">Remove</button>
+                    </div>
+                    <div class="cart__total">
+                        <h6>Cart total</h6>
+                        <ul>
+                            <li style="display: none;" id="subtotal">
+                                <%= totalPrice %>
+                            </li>
+                            <li>Subtotal <span id="subtotal">&#8377; <%= totalPrice %></span></li>
+                            <li class="coupon-li">
+                                <span id="couponSubtotal" style="display: none;"></span>
+                                <span id="couponSub"></span>
+                            </li>
+
+                            <li>Total <span id="mainTotal">&#8377; <%= totalPrice %></span></li>
+                        </ul>
+                        <% if( !products.items.length==0){ %>
+                            <button type="button" class="checkbtn"
+                                style="color: #fff; background-color: rgba(112, 20, 20, 0.921);"
+                                onclick="checkoutPage()">Proceed to
+                                checkout</button>
+                            <% }else{ %>
+                                <button type="button" class="checkbtn"
+                                    style="color: #fff; background-color: rgba(112, 20, 20, 0.921);"
+                                    onclick="empty()">Proceed to
+                                    checkout</button>
+                                <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Shopping Cart Section End -->
+
+    <!-- Footer Section Begin -->
+    <footer class="footer" style="background-color: rgb(112, 20, 20);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <a href="#"><img src="borcelle real.png" alt="" style="height: 180px;"></a>
+                        </div>
+                        <p style="margin-top: 30px;">The customer is at the heart of our unique business model, which
+                            includes design.</p>
+                    </div>
+                </div>
+                <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>Shopping</h6>
+                        <ul style="color: #ffffff74; cursor: context-menu;">
+                            <li>Clothing Store</li>
+                            <li>Mens Store</li>
+                            <li>Winter clothes</li>
+                            <li>Inner wears</li>
+                            <li>Trending Fashions</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>Available</h6>
+                        <ul style="color: #ffffff74; cursor: context-menu;">
+                            <li>Contact Us</li>
+                            <li>Payment Methods</li>
+                            <li>Delivary</li>
+                            <li>Return & Exchanges</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>Borcelle men's fashion</h6>
+                        <div class="footer__newslatter">
+                            <p>
+                                Stay connected with Borcelle Men's Fashion to stay updated on the latest trends,
+                                exclusive offers, and exciting events! .</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="footer__copyright__text">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <p>
+                            Visit for the best outlook Thank you<i class="fa fa-heart-o" aria-hidden="true"></i> by <a
+                                href="https://colorlib.com" target="_blank">BORCELLE</a>
+                        </p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search End -->
+
+    <!-- Js Plugins -->
+    <script src="user_asset/js/jquery-3.3.1.min.js"></script>
+    <script src="user_asset/js/bootstrap.min.js"></script>
+    <script src="user_asset/js/jquery.nice-select.min.js"></script>
+    <script src="user_asset/js/jquery.nicescroll.min.js"></script>
+    <script src="user_asset/js/jquery.magnific-popup.min.js"></script>
+    <script src="user_asset/js/jquery.countdown.min.js"></script>
+    <script src="user_asset/js/jquery.slicknav.js"></script>
+    <script src="user_asset/js/mixitup.min.js"></script>
+    <script src="user_asset/js/owl.carousel.min.js"></script>
+    <script src="user_asset/js/main.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Find the quantity input and buttons
+            const quantityInput = document.querySelectorAll(".quantity-input");
+            const decreaseButton = document.querySelectorAll(".quantity-decrease");
+            const increaseButton = document.querySelectorAll(".quantity-increase");
+            const productId = document.querySelectorAll(".product-id");
+
+            const removeButton = document.querySelectorAll(".removeButton");
+            console.log(removeButton)
+
+            removeButton.forEach((item, index) => {
+                item.addEventListener("click", function () {
+                    console.log(item);
+                    const itemId = item.getAttribute('data-itemId');
+                    console.log("item id", itemId);
+                    console.log("remove button clicked");
+
+                    removeProduct(itemId);
+                });
+            })
+
+            decreaseButton.forEach((item, index) => {
+                item.addEventListener("click", function () {
+                    console.log("decreasing")
+
+                    //    console.log("productid of index", productId[index].value);
+                    updateQuantity(item.getAttribute("data-item-id"), index, -1);
+                });
+            });
+
+            increaseButton.forEach((item, index) => {
+                item.addEventListener("click", function () {
+                    console.log("increasing")
+                    console.log(item)
+                    updateQuantity(item.getAttribute("data-item-id"), index, 1);
+                    // console.log("productid of index", productId[index].value);
+                });
+            });
+
+            const updateQuantity = async (itemId, index, change) => {
+
+                console.log(index)
+                const currentValue = parseInt(quantityInput[index].value, 10);
+                console.log("updateQuantity fnc")
+                if (currentValue + change >= 1) {
+                    quantityInput[index].value = currentValue + change;
+                    // quantityChanging(itemId, productId[index].value, change)
+                    quantityChanging(itemId, change)
+                }
+            };
+
+            const quantityChanging = async (itemId, change) => {
+                console.log(itemId, change);
+
+                const response = await fetch("/cart-quantity", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        itemId: itemId,
+                        change: change,
+                    }),
+                });
+                console.log(response);
+
+                if (response.ok) {
+                    const updatedData = await response.json();
+
+
+                    console.log(updatedData);
+                    window.location.reload()
+
+                    // Recalculate total price
+                    const itemPrice = parseFloat(updatedData.price);
+                    const totalPriceElement = document.getElementById("price");
+                    const currentTotalPrice = parseFloat(totalPriceElement.textContent);
+
+                    const newTotalPrice = currentTotalPrice + itemPrice * quantity;
+
+                    totalPriceElement.textContent = newTotalPrice.toFixed(2);
+                } else {
+                    alert("Failed to update quantity");
+                }
+            };
+
+
+            const removeProduct = async (itemId) => {
+                const response = await fetch("/remove-product", {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        itemId: itemId
+                    }),
+                });
+                console.log(response);
+
+                if (response.ok) {
+                    const removedData = await response.json();
+                    console.log(removedData);
+                    window.location.reload();
+                } else {
+                    alert("Failed to remove item");
+                }
+            }
+        });
+
+        function checkoutPage() {
+            const coupon = document.getElementById('couponOffer').value;
+            console.log("checkout", coupon);
+            let url="/check-out"
+            if(coupon){
+                url+=`?coupon=${encodeURIComponent(coupon)}`
+            }
+
+            window.location.href = url;
+
+
+        }
+
+        function empty() {
+            alert('Your cart is empty, Shop now !!')
+        }
+
+        function couponApply() {
+            let code = document.getElementById('couponOffer').value;
+            let minimum = parseFloat(document.getElementById(code).getAttribute('data-minimum'));
+            let discount = parseFloat(document.getElementById(code).value);
+            let subtotal = parseFloat(document.getElementById('subtotal').innerText);
+            console.log(code, minimum, discount, subtotal);
+
+            if (subtotal > minimum) {
+                document.getElementById('couponSubtotal').innerText = 'Coupon';
+                document.getElementById('couponSubtotal').style.display = 'inline-block';
+                document.getElementById('couponSub').innerHTML = `&#8377;${discount}`;
+                document.getElementById('couponRemove').style.display = 'inline-block';
+
+                const total = subtotal - discount;
+                document.getElementById('mainTotal').innerHTML = `&#8377;&nbsp;${total}`;
+            } else {
+                alert('Add more product to apply the coupon');
+                return;
+            }
+        }
+
+
+        function removeCoupon() {
+            document.getElementById('couponSubtotal').style.display = 'none';
+            document.getElementById('couponRemove').style.display = 'none';
+            document.getElementById('couponSub').style.display = 'none';
+            window.location.reload();
+
+
+        }
+    </script>
+
+</body>
+
+</html>

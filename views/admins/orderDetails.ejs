@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product category </title>
+
+  <link rel="stylesheet" href="/admin_asset/assets/css/styles.min.css">
+
+  <style>
+    table {
+      margin-left: 35px;
+    }
+
+    .info {
+      font-size: 16px;
+      color: rgb(112, 7, 7);
+    }
+  </style>
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
+      <!-- Sidebar scroll-->
+      <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+          <a href="./index.html" class="text-nowrap logo-img">
+            <img src="/Borcelle white.png" width="155" alt="" style="margin-left: 20px; margin-top: 10px;" />
+          </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+          <ul id="sidebarnav">
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/dashboard" aria-expanded="false">
+                <span>
+                  <i class="ti ti-layout-dashboard"></i>
+                </span>
+                <span class="hide-menu">Dashboard</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/users-list" aria-expanded="false">
+                <span>
+                  <i class="ti ti-article"></i>
+                </span>
+                <span class="hide-menu">Customers</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/products" aria-expanded="false">
+                <span>
+                  <i class="ti ti-shopping-cart"></i>
+                </span>
+                <span class="hide-menu">Products</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/categories" aria-expanded="false">
+                <span>
+                  <i class="ti ti-cards"></i>
+                </span>
+                <span class="hide-menu">Categories</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/orders" aria-expanded="false"
+                style="background-color: rgb(112, 7, 7); color: #fff;">
+                <span>
+                  <i class="ti ti-file-description"></i>
+                </span>
+                <span class="hide-menu">Orders</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/product-coupon" aria-expanded="false">
+                <span>
+                  <i class="ti ti-tag"></i>
+                </span>
+                <span class="hide-menu">Coupons</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/product-offer" aria-expanded="false">
+                <span>
+                  <i class="ti ti-discount"></i>
+                </span>
+                <span class="hide-menu">Offer</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/banners" aria-expanded="false" style="color: black;">
+                <span>
+                  <i class="ti ti-aperture"></i>
+                </span>
+                <span class="hide-menu">Banner</span>
+              </a>
+            </li>
+            <li class="sidebar-item" style="margin-top: 30px; width: 180px; margin-left: 17px;">
+              <a class="sidebar-link" href="" aria-expanded="false"
+              style="background-color: rgb(112, 7, 7); padding-left: 49px;">
+                <span>
+                  <i class="ti ti-power-off"></i>
+                </span>
+                <span class="hide-menu" style="color: aliceblue;">Logout</span>
+              </a>
+            </li>
+        </nav>
+        <!-- End Sidebar navigation -->
+      </div>
+      <!-- End Sidebar scroll-->
+    </aside>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+
+      <div
+        style="background-color: rgb(112, 7, 7); color: #fff; text-align: center;
+      margin-left: 20px; height: 50px; font-size: xx-large; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">
+        ORDER DETAILS
+      </div>
+      <br>
+      <table>
+        <tbody>
+          <% if (order.items && Array.isArray(order.items) && order.items.length> 0) { %>
+            <% order.items.forEach(item=> { %>
+              <tr class="orderItem">
+                <td>
+                  <input type="hidden" value="<%= item._id %>" id="itemId">
+                  <% if (item.productId && item.productId.image && item.productId.image.length> 0) { %>
+                    <img style="height: 250px; border-radius: 10px; padding-bottom: 10px;"
+                      src="/productImages/<%= item.productId.image[0] %>" alt="<%= item.productId.name %>">
+                    <% } %>
+                </td>
+                <td style="padding-bottom: 60px; padding-left: 250px;">
+                  <div
+                    style="font-size: 20px; font-weight: 600; font-family: Georgia, 'Times New Roman', Times, serif; color: rgb(112, 7, 7);">
+                    <%= item.productId.name %>
+                  </div>
+                  <br>
+                  <div style="font-size: 15px; color: black; font-weight: 500;">
+                    Quantity: <%= item.quantity %>
+                      <br>
+                      Payment Method: <%= order.payment %>
+                        <br>
+                        Ordered Date: <%= order.orderedDate.toLocaleDateString() %>
+                          <br>
+                          Expected Date: <%= order.expectedDate.toLocaleDateString() %>
+                  </div>
+                </td>
+                <td>
+                  <input type="hidden" value="<%= order._id %>" id="orderId">
+
+                  <div class="col-8 pe-5" style="margin-left: 200px;">
+                    <select name="category" id="topLevelCategory" class="form-select mb-3"
+                      style="border-color: rgb(112, 7, 7);">
+                      <% if (item.orderStatus==='Pending' ) { %>
+                        <option selected>
+                          <%= item.orderStatus %>
+                        </option>
+                        <option value="Packed">Packed</option>
+                        <option value="Shipped">Shipped</option>
+                        <option value="Delivered">Delivered</option>
+                        <% } else if (item.orderStatus==='Packed' ) { %>
+                          <option selected>
+                            <%= item.orderStatus %>
+                          </option>
+                          <option value="Shipped">Shipped</option>
+                          <option value="Delivered">Delivered</option>
+                          <% } else if (item.orderStatus==='Shipped' ) { %>
+                            <option selected>
+                              <%= item.orderStatus %>
+                            </option>
+                            <option value="Delivered">Delivered</option>
+                            <% } else { %>
+                              <option selected>
+                                <%= item.orderStatus %>
+                              </option>
+                              <% } %>
+                    </select>
+                  </div>
+
+
+                </td>
+              </tr>
+              <% }) %>
+                <% } %>
+        </tbody>
+      </table>
+      <div
+        style="background-color: rgba(112, 7, 7, 0.152); margin-top: 20px; padding-left: 30px; padding-top: 20px; padding-bottom: 10px; border-radius: 10px;">
+
+        <p
+          style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size: larger; color: rgb(112, 7, 7);">
+          <%= order.userAddress.fullname %>
+        </p>
+        <p class="info">
+          <%= order.userAddress.city %>, <%= order.userAddress.state %>, <%= order.userAddress.house_no %>
+        </p>
+        <p class="info" style="font-weight: 500;">
+          <%= order.userAddress.mobile %>
+        </p>
+        <p class="info">
+          <%= order.userAddress.pincode %>,<%= order.userAddress.area %>
+        </p>
+      </div>
+
+      <button type="button"
+        style="margin-bottom: 20px; margin-top: 15px; width: 90px; height: 30px; background-color: #fff; margin-left: 950px; border: 2px solid rgb(112, 7, 7); padding-top: 1px; border-radius: 10px;"
+        onclick="submit()">
+        Done</button>
+
+      <script src="/admin_asset/assets/libs/jquery/dist/jquery.min.js"></script>
+      <script src="/admin_asset/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="/admin_asset/assets/js/sidebarmenu.js"></script>
+      <script src="/admin_asset/assets/js/app.min.js"></script>
+      <script src="/admin_asset/assets/libs/simplebar/dist/simplebar.js"></script>
+
+
+      <script>
+        function submit() {
+          const orderId = document.getElementById('orderId').value;
+
+          let itemUpdateStatus = {}
+          const items = document.querySelectorAll('.orderItem');
+
+          items.forEach((item) => {
+            const itemId = item.querySelector('input[type="hidden"][id="itemId"]').value;
+            const status = item.querySelector('select[name="category"]').value;
+            itemUpdateStatus[itemId] = status;
+          });
+
+          try {
+            fetch('/admin/order-details', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ itemUpdateStatus, orderId })
+            })
+              .then(response => response.json())
+              .then(data => {
+                window.location.href = '/admin/orders';
+              })
+              .catch(error => {
+                console.error(error);
+              });
+          } catch (error) {
+            alert("error on order status");
+          }
+        }
+      </script>
+
+
+</body>
+
+</html>

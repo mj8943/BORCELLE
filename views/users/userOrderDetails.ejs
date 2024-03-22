@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+    }
+
+    th {
+        background-color: rgb(112, 7, 7);
+        color: #fff;
+    }
+
+    #img {
+        height: 150px;
+    }
+
+    .shipping-address {
+        margin-top: 20px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: center;
+        background-color: rgb(112, 7, 7);
+        /* Background color */
+        color: #fff;
+    }
+
+    .back {
+        height: 30px;
+        width: 70px;
+        background-color: rgb(112, 7, 7);
+        color: antiquewhite;
+        border-color: antiquewhite;
+        cursor: pointer;
+        width: 200px;
+    }
+
+    .rate,
+    .cancelling,
+    .invoice {
+        color: rgb(112, 7, 7);
+        background-color: #ddd;
+        border-color: rgb(112, 7, 7);
+        height: 30px;
+        width: 100px;
+        cursor: pointer;
+    }
+
+    .reasonBtn {
+        color: rgb(112, 7, 7);
+        background-color: #ddd;
+        border-color: rgb(112, 7, 7);
+        height: 30px;
+        width: 100px;
+    }
+
+    .sb {
+        height: 40px;
+        background-color: rgb(112, 7, 7);
+        color: #ddd;
+        border-radius: 5px;
+    }
+</style>
+
+<body>
+    <div style="background-color: rgb(112, 7, 7); color: #fff; text-align: center;
+      height: 50px; font-size: xx-large; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      margin-bottom: 20px; padding-top: 9px;">
+        MY ORDER
+    </div>
+    <a href="/user-orders"><button class="back">Back to Orders</button></a>
+    <br><br>
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>Product Name</th>
+                <th>Variant</th>
+                <th>Quantity</th>
+                <th>Ordered Date</th>
+                <th>Payment</th>
+                <th>Total Price</th>
+                <th>Order Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <input type="hidden" value="<%= order._id %>" id="orderId">
+            <!-- Loop through each item in the order -->
+            <% order.items.forEach(item=> { %>
+                <tr>
+                    <td>
+                        <img src="/productImages/<%= item.productId.image[0] %>" alt="" id="img">
+                        <img src="/productImages/<%= item.productId.image[3] %>" alt="" id="img">
+
+                    </td>
+                    <td>
+                        <% if (item.productId && item.productId.name) { %>
+                            <%= item.productId.name %>
+                                <% } %>
+                    </td>
+                    <td>
+                        <%= item.variant %>
+                    </td>
+                    <td>
+                        <%= item.quantity %>
+                    </td>
+                    <td>
+                        <%= order.orderedDate.toLocaleDateString() %>
+                    </td>
+                    <td>
+                        <%= order.payment %>
+                    </td>
+
+                    <td>
+                        <% let totalPrice %>
+                            <% if(item.productId.finalPrice){ %>
+                                <% totalPrice=item.productId.finalPrice * item.quantity; %>
+                                    &#8377; <%= totalPrice %><br>
+                                        <p style="font-family:'Times New Roman', Times, serif ; color: brown;">(Offer
+                                            applied)</p>
+                                        <% }else{ %>
+                                            <% totalPrice=item.productId.price * item.quantity; %>
+                                                &#8377; <%= totalPrice %>
+                                                    <% } %>
+                    </td>
+                    <td>
+                        <%= item.orderStatus %>
+                    </td>
+                    <td>
+                        <% if (item.orderStatus==='Delivered' ) { %>
+                            <!-- If order status is Delivered, show Return button -->
+                            <button onclick="returnOrder('<%= order._id %>',`<%= item._id %>`)"
+                                class="cancelling">Return</button><br><br>
+                            <button class="invoice" onclick="downloadInvoice()">Invoice</button><br><br>
+                            <button data-productId='<%= item.productId._id %>' class="rate" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop">Rate</button>
+                            <% }else if (item.orderStatus==='returned' || item.orderStatus==='cancelled' ) { %>
+
+                                <% } else { %>
+                                    <!-- Otherwise, show Cancel button -->
+                                    <button onclick="cancelOrder('<%= order._id %>',`<%= item._id %>`)"
+                                        class="cancelling">Cancel</button>
+                                    <% } %>
+                    </td>
+
+
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>
+
+    <div id="formContainer"></div>
+
+
+    <div class="shipping-address">
+        <h2>Shipping Address</h2>
+        <p>
+            Full Name: <%= order.userAddress.fullname %><br>
+                Mobile: <%= order.userAddress.mobile %><br>
+                    City: <%= order.userAddress.city %><br>
+                        State: <%= order.userAddress.state %><br>
+                            House No: <%= order.userAddress.house_no %><br>
+                                Pincode: <%= order.userAddress.pincode %><br>
+                                    Area: <%= order.userAddress.area %><br>
+        </p>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="reviewForm" action="/product-review" method="post">
+                    <div class="modal-body">
+                        <input type="hidden" id="productModal" name="productId">
+                        <label for="rating">Rating:</label><br>
+                        <input type="radio" id="rating1" name="rating" value="1" required>
+                        <label for="rating1">1 star</label>
+                        &nbsp;
+                        <input type="radio" id="rating2" name="rating" value="2">
+                        <label for="rating2">2 star</label>
+                        &nbsp;
+                        <input type="radio" id="rating3" name="rating" value="3">
+                        <label for="rating3">3 star</label>
+                        &nbsp;
+                        <input type="radio" id="rating4" name="rating" value="4">
+                        <label for="rating4">4 star</label>
+                        &nbsp;
+                        <input type="radio" id="rating5" name="rating" value="5">
+                        <label for="rating5">5 star</label>
+                        <br><br>
+                        <label for="description">Write Your review:</label><br><br>
+                        <textarea name="description" rows="4" cols="50"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="sb">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+
+        async function downloadInvoice() {
+            try {
+                const orderId = document.querySelector("#orderId").value
+
+                const response = await fetch(`/invoice/${orderId}`);
+
+                // Check if the response is successful
+                if (response.ok) {
+                    // Create a blob from the response data
+                    const blob = await response.blob();
+
+                    // Create a temporary URL for the blob
+                    const url = window.URL.createObjectURL(blob);
+
+                    // Create an anchor element to trigger the download
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'invoice.pdf';
+                    document.body.appendChild(a);
+                    a.click();
+
+                    // Clean up by revoking the URL object
+                    window.URL.revokeObjectURL(url);
+                } else {
+                    console.error('Failed to download invoice. Status:', response.status);
+                }
+            } catch (error) {
+                console.error('Error downloading invoice:', error);
+            }
+        }
+
+
+        function formSub() {
+            window.location.reload()
+        }
+
+        const buttons = document.querySelectorAll('.rate');
+        buttons.forEach(button => {
+            button.addEventListener('click', function () {
+                // Get the value of data-num attribute
+                const dataProductId = this.getAttribute('data-productId');
+
+                // Set the data-num value into the hidden input field
+                document.getElementById('productModal').value = dataProductId;
+            });
+        });
+
+        function cancelOrder(orderId, itemId) {
+            showForm('Cancel', orderId, itemId);
+        }
+
+        function returnOrder(orderId, itemId) {
+            showForm('Return', orderId, itemId);
+        }
+
+        function showForm(action, orderId, itemId) {
+            const formHtml = `
+                <div>
+                    <h2 style="color:;">${action} Reason Form</h2>
+                    <form id="${action.toLowerCase()}Form" onsubmit="submit${action}Form(event, '${orderId}', '${itemId}')">
+                        <textarea name="${action.toLowerCase()}Reason" rows="4" cols="50" required placeholder="Enter ${action} reason..."></textarea>
+                        <br>
+                        <button type="submit" class="reasonBtn">${action}</button>
+                    </form>
+                </div>
+            `;
+            document.getElementById('formContainer').innerHTML = formHtml;
+        }
+
+        function submitCancelForm(event, orderId, itemId) {
+            event.preventDefault();
+            const cancelReason = document.querySelector('#cancelForm textarea[name="cancelReason"]').value;
+            sendDataToServer(orderId, 'cancelled', itemId, cancelReason);
+        }
+
+        function submitReturnForm(event, orderId, itemId) {
+            event.preventDefault();
+            const returnReason = document.querySelector('#returnForm textarea[name="returnReason"]').value;
+            sendDataToServer(orderId, 'returned', itemId, returnReason);
+        }
+
+        function sendDataToServer(orderId, action, itemId, reason) {
+            fetch('/order-details-status', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ orderId, action, itemId, reason })
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Order ' + action + ' successfully.');
+                        // You can perform additional actions here if needed
+                        window.location.reload();
+                    } else {
+                        alert('Failed to ' + action + ' order.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Failed to ' + action + ' order.');
+                });
+        }
+
+    </script>
+
+    <div id="formContainer"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

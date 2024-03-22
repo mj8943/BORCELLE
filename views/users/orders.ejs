@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY ORDERS</title>
+</head>
+<style>
+    .item {
+        margin-left: 100px;
+    }
+
+    .font {
+        font-weight: 500;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+    .mainbtn{
+            height: 30px;
+            background-color: rgb(112, 7, 7);
+            color: antiquewhite;
+            border-color: antiquewhite;
+            cursor: pointer;
+            margin-left: 660px;
+        }
+        .shops{
+            height: 30px;
+            background-color: rgb(112, 7, 7);
+            color: antiquewhite;
+            border-color: antiquewhite;
+            cursor: pointer; 
+            margin-left: 20px;
+        }
+</style>
+
+<body>
+    <div style="background-color: rgb(112, 7, 7); color: #fff; text-align: center;
+      height: 50px; font-size: xx-large; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      margin-bottom: 20px; padding-top: 9px;">
+        MY ORDERS
+    </div>
+    <% if (order.length === 0) { %>
+        <div style="text-align: center; font-size: 20px; margin-top: 50px; margin-bottom: 50px; color: rgb(112, 7, 7);"
+        >No orders found !! &nbsp; Order Now</div>
+    <% } else { %>
+        <% order.forEach(order => { %>
+            <a href="/user-order-details/<%= order._id %>" style="text-decoration: none;">
+                <div style="margin-left: 100px; margin-bottom: 20px; background-color: rgba(112, 7, 7, 0.152); border-radius: 10px; color: rgb(112, 7, 7); font-family: 'Times New Roman', Times, serif; padding: 20px; padding-left: 100px; font-size: 17px; width: 1200px; cursor: pointer; border: solid; position: relative;">
+                    <% if (order.coupon) { %>
+                        <span style="position: absolute; top: 10px; left: 10px; background-color: rgb(112, 7, 7); color: aliceblue; padding: 5px; border-radius: 5px;">Coupon Applied &#8377; <%= order.coupon %></span><br>
+                    <% } %>
+                    <% order.items.forEach(item => { %>
+                        <div style="display: flex;">
+                            <input type="hidden" value="<%= order._id %>" id="orderId">
+                            <p class="font">
+                                <% if (item.productId && item.productId.name) { %>
+                                    &bull; <%= item.productId.name %> &nbsp;(<%= item.variant %>)<br>
+                                <% } %>
+                            </p>
+                            <p class="item font"> Total price : Rs.<%= order.total %>
+                            </p>
+                            <p class="item font">Ordered Date:<%= order.orderedDate.toLocaleDateString() %>
+                            </p>
+                            <p class="item font">
+                                <%= order.userAddress.mobile %>
+                            </p>
+                            <h5 class="item font">
+                                <%= order.payment %>
+                            </h5>
+                            <h4 style="color: rgb(208, 161, 99); font-weight: 600;" id="status" class="item font">
+                                <%= item.orderStatus %>
+                            </h4>
+                        </div>
+                    <% }); %>
+                </div>
+            </a>
+        <% }); %>        
+    <% } %>
+    
+        <a href="/user-profile"><button type="button" class="mainbtn"> Back to Profile</button></a>
+        <a href="/shops"><button type="button" class="shops"> Shop Now</button></a>
+
+</body>
+
+</html>

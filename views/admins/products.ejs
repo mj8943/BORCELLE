@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products</title>
+
+  <link rel="stylesheet" href="/admin_asset/assets/css/styles.min.css">
+
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css">
+
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: cornflowerblue;
+      color: aliceblue;
+    }
+
+    #addprd {
+      width: 120px;
+      height: 35px;
+      background-color: cornflowerblue;
+      border-radius: 5px;
+      border: none;
+    }
+
+    #ap {
+      color: aliceblue;
+    }
+
+    .tbl {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+
+    .dropdown select {
+      padding: 10px 15px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
+      <!-- Sidebar scroll-->
+      <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+          <a href="./index.html" class="text-nowrap logo-img">
+            <img src="/Borcelle white.png" width="155" alt="" style="margin-left: 20px; margin-top: 10px;" />
+          </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+          <ul id="sidebarnav">
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/dashboard" aria-expanded="false">
+                <span>
+                  <i class="ti ti-layout-dashboard"></i>
+                </span>
+                <span class="hide-menu">Dashboard</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/users-list" aria-expanded="false">
+                <span>
+                  <i class="ti ti-article"></i>
+                </span>
+                <span class="hide-menu">Customers</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/products" aria-expanded="false"
+                style="background-color: rgb(112, 7, 7);">
+                <span>
+                  <i class="ti ti-shopping-cart"></i>
+                </span>
+                <span class="hide-menu">Products</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/categories" aria-expanded="false">
+                <span>
+                  <i class="ti ti-cards"></i>
+                </span>
+                <span class="hide-menu">Categories</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/orders" aria-expanded="false">
+                <span>
+                  <i class="ti ti-file-description"></i>
+                </span>
+                <span class="hide-menu">Orders</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/product-coupon" aria-expanded="false">
+                <span>
+                  <i class="ti ti-tag"></i>
+                </span>
+                <span class="hide-menu">Coupons</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/product-offer" aria-expanded="false">
+                <span>
+                  <i class="ti ti-discount"></i>
+                </span>
+                <span class="hide-menu">Offer</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/banners" aria-expanded="false" style="color: black;">
+                <span>
+                  <i class="ti ti-aperture"></i>
+                </span>
+                <span class="hide-menu">Banner</span>
+              </a>
+            </li>
+            <li class="sidebar-item" style="margin-top: 30px; width: 180px; margin-left: 17px;">
+              <a class="sidebar-link" href="/admin/logout" aria-expanded="false"
+                style="background-color: rgb(112, 7, 7); padding-left: 59px;">
+                <span class="hide-menu" style="color: aliceblue;">Logout</span>
+              </a>
+            </li>
+        </nav>
+        <!-- End Sidebar navigation -->
+      </div>
+      <!-- End Sidebar scroll-->
+    </aside>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      <!--  Header Start -->
+
+
+      <!--  Header End -->
+      <div class="container-fluid">
+        <table id="dataTable" class="tbl">
+          <thead>
+            <tr>
+              <th style="background-color: rgb(112, 7, 7);text-align: center;"></th>
+              <th style="background-color: rgb(112, 7, 7);text-align: center;">Name</th>
+              <th style="background-color: rgb(112, 7, 7);text-align: center;">Category</th>
+              <th style="background-color: rgb(112, 7, 7);text-align: center;">Price</th>
+              <th style="background-color: rgb(112, 7, 7);text-align: center;">Description</th>
+              <th style="background-color: rgb(112, 7, 7);text-align: center;">Stocks</th>
+              <th style="background-color: rgb(112, 7, 7);text-align: center;">Offers</th>
+              <th style="background-color: rgb(112, 7, 7);text-align: center;">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% products.forEach(product=> { %>
+              <tr>
+                <td style="text-align: start; width: 150px;">
+                  <% if (product.image) { %>
+                    <img src="/productImages/<%= product.image[0] %>" alt="<%= product.name %> Image"
+                      style="max-width: 150px; max-height: 70px;">
+                    <% } else { %>
+                      <p>No image available</p>
+                      <% } %>
+                </td>
+                <td>
+                  <%= product.name %>
+                </td>
+                <td>
+                  <%= product.category %>
+                </td>
+                <td><% if(product.finalPrice) { %>
+                  &#8377; <%= product.finalPrice %>
+                  <% }else{ %>
+                  &#8377; <%= product.price %>
+                  <% } %>
+                </td>
+                <td>
+                  <%= product.description %>
+                </td>
+                <td>
+                  <% let sumVariants=0; %>
+                    <% Object.keys(product.variant).forEach(key=> { %>
+                      <% sumVariants +=product.variant[key]; %>
+                        <% }); %>
+                          <% if(sumVariants==0){ %>
+                            <h6 style="color: red;">empty</h6>
+                            <% }else {%>
+                              <%= sumVariants %>
+                                <% } %>
+                </td>
+                <% if(product.discount){ %>
+                  <td>
+                    <%=product.discount.offerName %> &nbsp; offer &nbsp; &#8377;&nbsp;<%= product.discount.discountOffer
+                        %>
+                        <button type="button" class="removeOfferBtn" style="background-color: rgb(112, 7, 7); color: aliceblue; "
+                          data-product-id="<%= product._id %>">Remove</button>
+                  </td>
+                  <% } else{%>
+                    <td>
+                      <div class="dropdown">
+                        <select class="offerDropdown" data-product-id="<%= product._id %>"
+                          onchange="applyOrRemoveOffer(this)">
+                          <option value="" disabled selected>Select Product Offer</option>
+                          <% offers.forEach(offer=>{ %>
+                            <option value="<%= offer._id %>">
+                              <%= offer.offerName %>&nbsp; offer &nbsp; &#8377; <%= offer.discountOffer %>
+                            </option>
+                            <% }) %>
+                        </select>
+                      </div>
+                    </td>
+                    <% } %>
+                      <td><button type="button"
+                          class="btn actionbtn <%= product.is_listed ? 'btn-danger':'btn-success'  %>"
+                          data-product-id="<%= product._id %>"
+                          data-product-state="<%= product.is_listed ? 'List' : 'Unlist' %>" style="min-width: 70px;">
+                          <%= product.is_listed ? 'Unlist' : 'List' %>
+                        </button>
+                        <button data-bs-toggle="modal" data-bs-target="#staticBackdropEdit"
+                          data-product-id="<%= product._id %>" data-product-name="<%= product.name %>"
+                          data-product-category="<%= product.category %>" data-product-price="<%= product.price %>"
+                          data-product-stocks="<%= product.stocks %>"
+                          data-product-description="<%= product.description %>">
+                          <a href="/admin/edit-product/<%= product._id %>"><img src="/edit-image.jpg" alt="Edit"
+                              style="width: 24px; height: 24px;"></a>
+                        </button>
+
+                      </td>
+              </tr>
+              <% }); %>
+          </tbody>
+        </table>
+        <br>
+        <button style="background-color: rgb(112, 7, 7); height: 30px; width: 120px;"><a href='/admin/add_product'
+            id="ap">Add Product</a></button>
+      </div>
+
+      <script src="/admin_asset/assets/libs/jquery/dist/jquery.min.js"></script>
+      <script src="/admin_asset/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="/admin_asset/assets/js/sidebarmenu.js"></script>
+      <script src="/admin_asset/assets/js/app.min.js"></script>
+      <script src="/admin_asset/assets/libs/simplebar/dist/simplebar.js"></script>
+
+
+
+      <script>
+        document.querySelectorAll('.actionbtn').forEach(function (button) {
+          button.addEventListener('click', function () {
+            let productId = this.getAttribute('data-product-id');
+            let currentState = this.getAttribute('data-product-state');
+
+            let url;
+
+            if (currentState === 'List') {
+              url = '/admin/unlist-product';
+            } else {
+              url = '/admin/list-product';
+            }
+
+            fetch(url, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ productId })
+            })
+              .then(response => response.json())
+              .then(data => {
+                if (data.success) {
+                  console.log(data)
+                  // Update button state
+                  this.setAttribute('data-product-state', data.message.includes('unlisted') ? 'Unlist' : 'List');
+                  this.textContent = data.message.includes('unlisted') ? 'List' : 'Unlist';
+                  this.classList.toggle('btn-danger');
+                  this.classList.toggle('btn-success');
+                  alert(data.message);
+                } else {
+                  alert('Toggle block failed');
+                }
+              })
+              .catch(error => {
+                console.error(error);
+                alert('An error occurred during toggle block');
+              });
+          });
+        });
+      </script>
+
+
+      <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+
+      <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
+      <script>
+        $(document).ready(function () {
+          $('#dataTable').DataTable();
+        });
+      </script>
+
+      <script>
+        function applyOrRemoveOffer(selectElement) {
+          var selectedOption = selectElement.value;
+          var productId = selectElement.getAttribute('data-product-id');
+          console.log(productId);
+
+          fetch('/admin/offer-apply', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ productId: productId, selectedOption: selectedOption })
+          })
+            .then(response => response.json())
+            .then(data => {
+              if (data.success) {
+                alert("Offer applied to the product!");
+                window.location.reload();
+              } else {
+                alert('Applying offer failed');
+              }
+            })
+            .catch(error => {
+              console.error(error);
+              alert('An error occurred while applying offer');
+            });
+        }
+
+        // offer removing
+        document.querySelectorAll('.removeOfferBtn').forEach(function (button) {
+          button.addEventListener('click', function () {
+            let productId = this.getAttribute('data-product-id');
+            console.log(productId);
+            fetch('/admin/remove-offer', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ productId: productId })
+            }).then(response => response.json())
+              .then(data => {
+                if (data.success) {
+                  alert("Offer removed!");
+                window.location.reload();
+                } else {
+                  alert('Offer removal failed');
+                }
+              })
+              .catch(error => {
+                console.error(error);
+                alert('An error occurred while removing offer');
+              });
+
+          });
+        });
+      </script>
+
+</body>
+
+</html>

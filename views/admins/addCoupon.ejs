@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BORCELLE-Admin Panel</title>
+
+    <link rel="stylesheet" href="/admin_asset/assets/css/styles.min.css">
+
+    <style>
+        .inp {
+            margin-top: 3px;
+            width: 500px;
+            height: 35px;
+            border-radius: 5px;
+            margin-left: 330px;
+            padding-left: 10px;
+        }
+
+        .lab {
+            margin-top: 5px;
+            margin-left: 330px;
+        }
+
+        .bt {
+            margin-top: 50px;
+            margin-bottom: 50px;
+            width: 80px;
+            height: 25px;
+            margin-right: 20px;
+            font-weight: 600;
+            color: rgb(112, 7, 7);
+        }
+    </style>
+
+</head>
+
+<body>
+    <!--  Body Wrapper -->
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+        data-sidebar-position="fixed" data-header-position="fixed">
+        <!-- Sidebar Start -->
+        <aside class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div>
+                <div class="brand-logo d-flex align-items-center justify-content-between">
+                    <a href="./index.html" class="text-nowrap logo-img">
+                        <img src="/Borcelle white.png" width="155" alt=""
+                            style="margin-left: 20px; margin-top: 10px;" />
+                    </a>
+                    <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+                        <i class="ti ti-x fs-8"></i>
+                    </div>
+                </div>
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+                    <ul id="sidebarnav">
+                        <li class="nav-small-cap">
+                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="/admin/dashboard" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-layout-dashboard"></i>
+                                </span>
+                                <span class="hide-menu">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="/admin/users-list" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-article"></i>
+                                </span>
+                                <span class="hide-menu">Customers</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="/admin/products" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-shopping-cart"></i>
+                                </span>
+                                <span class="hide-menu">Products</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="/admin/categories" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-cards"></i>
+                                </span>
+                                <span class="hide-menu">Categories</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="/admin/orders" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-file-description"></i>
+                                </span>
+                                <span class="hide-menu">Orders</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="/admin/product-coupon" aria-expanded="false"
+                                style="background-color: rgb(112, 7, 7); color: aliceblue;">
+                                <span>
+                                    <i class="ti ti-tag"></i>
+                                </span>
+                                <span class="hide-menu">Coupons</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="/admin/product-offer" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-discount"></i>
+                                </span>
+                                <span class="hide-menu">Offer</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="/admin/banners" aria-expanded="false" style="color: black;">
+                                <span>
+                                    <i class="ti ti-aperture"></i>
+                                </span>
+                                <span class="hide-menu">Banner</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item" style="margin-top: 30px; width: 180px; margin-left: 17px;">
+                            <a class="sidebar-link" href="/admin/logout" aria-expanded="false"
+                                style="background-color: rgb(112, 7, 7); padding-left: 59px;">
+                                <span class="hide-menu" style="color: aliceblue;">Logout</span>
+                            </a>
+                        </li>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!--  Sidebar End -->
+        <!--  Main wrapper -->
+        <div class="body-wrapper">
+
+            <div
+                style="background-color: rgb(112, 7, 7); color: #fff; width: 95%; text-align: center;
+              margin-left: 20px; height: 50px; font-size: xx-large; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">
+                ADD COUPON
+            </div>
+            <div
+                style="background-color: rgba(197, 127, 127, 0.414); margin-left: 20px; margin-right: 45px; padding-top: 30px;">
+                <form method="post" id="couponData">
+                    <label for="couponCode" class="lab">Enter coupon code:</label><br>
+                    <input type="text" name="couponCode" placeholder="Coupon code" required class="inp"><br>
+                    <label for="discountAmount" class="lab">Enter Discount:</label><br>
+                    <input type="number" name="discountAmount" placeholder="Discount Amount" required class="inp"><br>
+                    <label for="minimumSpend" class="lab">Enter Minimum spend:</label><br>
+                    <input type="number" name="minimumSpend" placeholder="Minimum spend" required class="inp"><br>
+                    <label for="startDate" class="lab">Select Start date:</label><br>
+                    <input type="date" name="startDate" placeholder="Coupon start date" required class="inp"><br>
+                    <label for="endDate" class="lab">Select End date:</label><br>
+                    <input type="date" name="endDate" placeholder="Coupon end date" required class="inp">
+                </form>
+                <a href="/admin/product-coupon" style="margin-left: 480px;"><button class="bt">Cancel</button></a>
+                <button type="button" onclick="couponForm()" class="bt">Submit</button>
+            </div>
+            <script src="/admin_asset/assets/libs/jquery/dist/jquery.min.js"></script>
+            <script src="/admin_asset/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="/admin_asset/assets/js/sidebarmenu.js"></script>
+            <script src="/admin_asset/assets/js/app.min.js"></script>
+            <script src="/admin_asset/assets/libs/simplebar/dist/simplebar.js"></script>
+
+            <script>
+                function couponForm() {
+                    var form = document.getElementById("couponData");
+                    var couponCode = form.elements["couponCode"].value.trim();
+                    var discountAmount = parseFloat(form.elements["discountAmount"].value.trim());
+                    var minimumSpend = parseFloat(form.elements["minimumSpend"].value.trim());
+                    var startDate = new Date(form.elements["startDate"].value.trim());
+                    var endDate = new Date(form.elements["endDate"].value.trim());
+
+                    // Check for non-empty fields
+                    if (!couponCode || discountAmount <= 0 || minimumSpend <= 0 || !startDate || !endDate) {
+                        alert("All fields are required and must have valid values");
+                        return false; // Prevent form submission
+                    }
+
+                    // Check if end date is after start date
+                    if (endDate <= startDate) {
+                        alert("End date must be after start date");
+                        return false; // Prevent form submission
+                    }
+
+                    form.submit();
+                }
+            </script>
+
+
+
+
+
+</body>
+
+</html>

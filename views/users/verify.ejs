@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP verification</title>
+</head>
+
+<body style="background-image: url('user_asset/loginpage.jpg'); background-size: cover;">
+    <div
+        style="background-color: rgb(112, 20, 20); width: 500px; height: 500px; margin-left: 150px; margin-top: 80px; padding-left: 40px;">
+        <div><img src="borcelle real.png" alt="logo"
+                style="width: 170px; height: 130px; margin-left: 150px; margin-top: 30px;"></div>
+
+
+        <h3 style="color: aliceblue; margin-left: 136px; margin-top: 40px;">OTP VARIFICATION</h3>
+        <% if(typeof message !=='undefined' ){ %>
+            <p style="color: white; font-size: smaller; margin-left: 170px;">
+                <%= message %>
+            </p>
+            <% } %>
+                <div>
+                    <h4 style="color: #ffffffbd; margin-left: 130px;">FOR RESEND OTP &nbsp <span id="timer"
+                            style="color: red;"></span></h4>
+                    <button id="sendButton"
+                        style="display: none; color: rgb(112, 20, 20); font-family: 'Times New Roman', Times, serif; font-weight: 600; width: 115px; height: 30px; margin-left: 170px; margin-top: 20px; border: 0;"
+                        onclick="resendOTP()">
+                        Resend</button>
+                    <br>
+                    <form method="post">
+                        <input type="text" id="otp" name="otp" maxlength="6" required
+                            style="width: 415px; height: 30px; margin-left: 20px;">
+                        <br>
+                        <button type="submit"
+                            style="color: rgb(112, 20, 20); font-family: 'Times New Roman', Times, serif; font-weight: 600; width: 115px; height: 30px; margin-left: 170px; margin-top: 20px; border: 0;">Verify
+                            OTP</button>
+                    </form>
+                </div>
+    </div>
+
+
+    <script>
+        
+        function startCountdown(duration, display) {
+            let timer = duration, minutes, seconds;
+            let interval = setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    clearInterval(interval);
+                    display.textContent = "00:00";
+
+                    document.getElementById("sendButton").style.display = "block";
+                }
+            }, 1000);
+        }
+
+        
+        function resendOTP() {
+            
+            document.getElementById("sendButton").style.display = "none";
+            
+            
+            let oneMinute = 60 * 1;
+            let display = document.querySelector('#timer');
+            startCountdown(oneMinute, display);
+            
+            
+            fetch('/resend-otp', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            .then(response => {
+                console.log('OTP resent successfully');
+            })
+            .catch(error => {
+                console.error('Error resending OTP:', error);
+            });
+        }
+
+        window.onload = function () {
+            let oneMinute = 60 * 1,
+                display = document.querySelector('#timer');
+
+            startCountdown(oneMinute, display);
+        };
+    </script>
+
+
+</body>
+
+</html>

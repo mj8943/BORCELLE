@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Male_Fashion Template">
+    <meta name="keywords" content="Male_Fashion, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BORCELLE</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="/user_asset/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/user_asset/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/user_asset/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/user_asset/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="/user_asset/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/user_asset/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/user_asset/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/user_asset/css/style.css" type="text/css">
+
+    <style>
+        .parallelogram {
+            width: 140px;
+            height: 92px;
+            margin-top: 1px;
+            background-color: rgb(112, 20, 20);
+            transform: skew(-18deg);
+            /* Adjust as needed */
+        }
+
+        .image-div {
+            width: 323px;
+            height: 470px;
+            border: 2px solid rgb(142, 134, 134);
+            position: relative;
+        }
+
+        .image-div>img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .lens {
+            top: 0;
+            ;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            border: 2px solid rgba(21, 187, 247, 0.664);
+            position: absolute;
+            background-color: rgba(21, 187, 247, 0.344);
+            opacity: 0;
+        }
+
+        .active {
+            opacity: 1;
+        }
+
+        .zoom {
+            position: absolute;
+            left: calc(100% + 50px);
+            top: 0;
+            width: 400px;
+            height: 400px;
+            background-size: cover;
+            border: 2px solid rgb(142, 134, 134);
+            display: none;
+        }
+
+        .zoom-active {
+            display: block;
+        }
+
+        .product__details__content {
+            display: contents;
+        }
+
+        .product__details__pic {
+            margin-bottom: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__option">
+            <div class="offcanvas__links">
+                <a href="#">Sign in</a>
+                <a href="#">FAQs</a>
+            </div>
+            <div class="offcanvas__top__hover">
+                <span>Usd <i class="arrow_carrot-down"></i></span>
+                <ul>
+                    <li>USD</li>
+                    <li>EUR</li>
+                    <li>USD</li>
+                </ul>
+            </div>
+        </div>
+        <div class="offcanvas__nav__option">
+            <a href='#' class="search-switch"><img src="user_asset/img/icon/search.png" alt=""></a>
+            <a href='#'><img src="user_asset/img/icon/heart.png" alt=""></a>
+            <a href='/shoping-cart'><img src="user_asset/img/icon/cart.png" alt=""> <span>0</span></a>
+            <div class="price">$0.00</div>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        <div class="offcanvas__text">
+            <p>Free shipping, 30-day return or refund guarantee.</p>
+        </div>
+    </div>
+    <!-- Offcanvas Menu End -->
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="header__top" style="background-color: rgb(112, 20, 20);">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-7">
+                        <div class="header__top__left">
+
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-5">
+                        <div class="header__top__right">
+                            <div class="header__top__links">
+
+                            </div>
+                            <div class="header__top__hover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                    <div class="parallelogram">
+                        <img src="/borcelle real.png" style="height: 91px; width: 110px; margin-left: 15px;">
+                    </div> <!-- Other scripts -->
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <nav class="header__menu mobile-menu">
+                        <ul>
+                            <li><a href='/' style="color: rgb(112, 20, 20); font-weight: 700;">Home</a>
+                            </li>
+                            <li class="active"><a href='/shops'
+                                    style="color: rgb(112, 20, 20); font-weight: 700;">Shop</a></li>
+
+                            <li><a href="/about" style="color: rgb(112, 20, 20); font-weight: 700;">About</a>
+                            </li>
+                            <li><a href="/blog" style="color: rgb(112, 20, 20); font-weight: 700;">Blog</a></li>
+                            <li><a href=" /contact" style="color: rgb(112, 20, 20); font-weight: 700;">Contact</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="canvas__open"><i class="fa fa-bars"></i></div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+
+    <!-- Shop Details Section Begin -->
+    <section class="shop-details">
+        <div class="product__details__pic">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="product__details__breadcrumb">
+                            <a href="/">Home</a>
+                            <a href="/shops">Shop</a>
+                            <span>Product Details</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- side images -->
+                <div class="row">
+                    <input type="hidden" value="<%=product[0].id%>" id="product">
+                    <div class="col-lg-3 col-md-3" style="height: 520px;">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <% for (let j=0; j < product[0].image.length ; j++) { %>
+                                <li class="nav-item">
+                                    <a class="nav-link <%= j === 0 ? 'active' : '' %>" data-toggle="tab"
+                                        href="#tabs-<%= j+1 %>" role="tab">
+                                        <div class="product_thumb_pic set-bg"
+                                            data-setbg="/images/shop-details/thumb-<%= j+1 %>.png">
+                                            <img src="/productImages/<%= product[0].image[j] %>" alt=""
+                                                onclick="changeImage(this)" style="height: 110px; width: 82px;">
+                                        </div>
+                                    </a>
+                                </li>
+                                <% } %>
+                        </ul>
+                    </div>
+
+                    <!-- side images end -->
+
+                    <div class="col-lg-6 col-md-9">
+                        <div class="tab-content">
+                            <div class="product-details-container">
+                                <div class="tab-content" style="margin-left: 133px; ">
+                                    <div class="image-div" style="width: 310px; border: 0;">
+                                        <div class="lens"></div>
+                                        <div class="zoom"></div>
+                                        <div class="product_detailspic_item">
+                                            <img src="/productImages/<%= product[0].image[0] %>"
+                                                style="height: 460px; width: 323;" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="product__details__content">
+                        <div class="container">
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-lg-8">
+                                    <div class="product__details__text">
+                                        <h4>
+                                            <%= product[0].name %>
+                                        </h4>
+                                        <div class="rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <span> - 5 Reviews</span>
+                                        </div>
+                                        <% if(product[0].finalPrice){ %>
+                                            <br>
+                                            <p style="color: red;"><%= product[0].discount.offerName %> offer &#8377;<%= product[0].discountPrice %> off</p>
+                                                <h3>&#8377;<%= product[0].finalPrice %>
+                                                </h3>
+                                                <h5 style="color: red; font-weight: 700; text-decoration: line-through;">&#8377;<%= product[0].price %>
+                                                </h5>
+                                            <% }else{ %>
+                                                <h3>&#8377;<%= product[0].price %></h3>
+                                                <% } %>
+                                                <p>
+                                                    <%= product[0].description %>
+                                                </p>
+                                                <div class="product__details__option" style="margin-left: 90px;">
+                                                    <div class="product__details__option__size">
+
+                                                        <% product.forEach(productItem=> { %>
+                                                            <div class="product__details__option">
+                                                                <div class="product__details__option__size">
+                                                                    <% let hasStock=false; %>
+                                                                        <%
+                                                                            Object.keys(productItem.variant).forEach(key=>
+                                                                            { %>
+                                                                            <% if (productItem.variant[key]> 0) { %>
+                                                                                <label for="<%= key %>">
+                                                                                    <%= key %>
+                                                                                        <input type="radio"
+                                                                                            id="<%= key %>">
+                                                                                </label>
+                                                                                <% hasStock=true; %>
+                                                                                    <% } %>
+                                                                                        <% }) %>
+                                                                                            <% if (!hasStock) { %>
+                                                                                                <h3
+                                                                                                    style="color: darkred;">
+                                                                                                    Out
+                                                                                                    of stock</h3>
+                                                                                                <% } %>
+                                                                </div>
+                                                            </div>
+                                                            <% }) %>
+
+
+                                                    </div>
+                                                </div>
+                                                <div class="product__details__cart__option">
+                                                    <button type="button" onclick="cartLoad()" class="primary-btn cart"
+                                                        id="cartBtn"
+                                                        style="background-color: rgb(112, 20, 20); color: aliceblue;">add
+                                                        to
+                                                        cart</button>
+                                                </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- <input type="text" value="<%= product[0].reviews %>"> -->
+                        <% if(product[0].reviews && product[0].reviews.length > 0){ %>
+                            <div style="width: 100%;">
+                                <hr>
+                                <% product[0].reviews.forEach(review =>{ %>
+                                    <div>
+                                        <p>User: <%= review.user.name %></p>
+                                        <p>Rating: <%= review.rating %></p>
+                                        
+                                        <% for( let index = 0; index < 5; index++ ) { %>
+                                            <% if(index<review.rating){%>
+                                                <i class="fa fa-star filled"></i>
+                                           <% }else{ %>
+                                                <i class="fa fa-star-o filled"></i>
+                                           <% } %>
+
+                                        <% } %>
+                                        <p>Date: <%= review.date.toLocaleDateString() %></p>
+                                        <p>Description: <%= review.description %></p>
+                                    </div>
+                                    <hr>
+                                <% }); %>
+                            </div>
+                        <% } %>
+    </section>
+    <!-- Shop Details Section End -->
+
+    <!-- Footer Section Begin -->
+    <footer class="footer" style="background-color: rgb(112, 20, 20);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <a href="#"><img src="/borcelle real.png" alt="" style="height: 180px;"></a>
+                        </div>
+                        <p style="margin-top: 30px;">The customer is at the heart of our unique business model, which
+                            includes design.</p>
+                    </div>
+                </div>
+                <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>Shopping</h6>
+                        <ul style="color: #ffffff74; cursor: context-menu;">
+                            <li>Clothing Store</li>
+                            <li>Mens Store</li>
+                            <li>Winter clothes</li>
+                            <li>Inner wears</li>
+                            <li>Trending Fashions</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>Available</h6>
+                        <ul style="color: #ffffff74; cursor: context-menu;">
+                            <li>Contact Us</li>
+                            <li>Payment Methods</li>
+                            <li>Delivary</li>
+                            <li>Return & Exchanges</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>Borcelle men's fashion</h6>
+                        <div class="footer__newslatter">
+                            <p>
+                                Stay connected with Borcelle Men's Fashion to stay updated on the latest trends,
+                                exclusive offers, and exciting events! .</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="footer__copyright__text">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <p>
+                            Visit for the best outlook Thank you<i class="fa fa-heart-o" aria-hidden="true"></i> by <a
+                                href="https://colorlib.com" target="_blank">BORCELLE</a>
+                        </p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search End -->
+
+    <!-- Js Plugins -->
+    <script src="/user_asset/js/jquery-3.3.1.min.js"></script>
+    <script src="/user_asset/js/bootstrap.min.js"></script>
+    <script src="/user_asset/js/jquery.nice-select.min.js"></script>
+    <script src="/user_asset/js/jquery.nicescroll.min.js"></script>
+    <script src="/user_asset/js/jquery.magnific-popup.min.js"></script>
+    <script src="/user_asset/js/jquery.countdown.min.js"></script>
+    <script src="/user_asset/js/jquery.slicknav.js"></script>
+    <script src="/user_asset/js/mixitup.min.js"></script>
+    <script src="/user_asset/js/owl.carousel.min.js"></script>
+    <script src="/user_asset/js/main.js"></script>
+
+
+    <script>
+        const container = document.querySelector('.image-div');
+        const image = document.querySelector('.image-div img');
+        const lens = document.querySelector('.lens');
+        const zoom = document.querySelector('.zoom');
+
+        container.addEventListener('mousemove', move);
+        container.addEventListener('mouseout', remove);
+
+        function move(e) {
+            const container_rect = container.getBoundingClientRect();
+
+            let x = e.pageX - container_rect.left - lens.offsetWidth / 2;
+            let y = e.pageY - container_rect.top - lens.offsetHeight / 2;
+            let maxX = container_rect.width - lens.offsetWidth;
+            let maxY = container_rect.height - lens.offsetHeight;
+
+            if (x > maxX) x = maxX;
+            if (x < 0) x = 0;
+
+            if (y > maxY) y = maxY;
+            if (y < 0) y = 0;
+
+            lens.style.cssText = `top: ${y}px; left: ${x}px`;
+
+            let cx = container_rect.width / lens.offsetWidth;
+            let cy = container_rect.height / lens.offsetHeight;
+
+            zoom.style.cssText = `
+        background: url(${image.src}) -${x * cx}px -${y * cy}px /
+        ${container_rect.width * cx}px ${container_rect.height * cy}px
+        no-repeat;
+    `;
+
+            lens.classList.add('active');
+            zoom.classList.add('zoom-active');
+        }
+
+        function remove() {
+            lens.classList.remove('active');
+            zoom.classList.remove('zoom-active');
+        }
+
+        function changeImage(item) {
+            image.src = item.src;
+        }
+    </script>
+
+    <script>
+        function cartLoad() {
+            console.log('nadakkum')
+
+            const item = document.getElementById("cartBtn");
+            const productId = document.getElementById("product").value;
+            const url = "/addToCart";
+
+            const selectedVariant = document.querySelector('.product__details__option__size input[type="radio"]:checked');
+            if (selectedVariant) {
+                const variant = selectedVariant.id;
+                console.log(productId, variant)
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ productId, variant })
+                }).then(response => {
+                    if (response.ok) {
+                        // Redirect to the cart page or do something else after successfully adding the product to the cart
+                        console.log(response)
+                        return response.json();
+                    } else if (response.status == 401) {
+                        // Handle errors if needed
+                        alert("Please Login!!");
+                        window.location.href = '/login';
+                    }
+                }).then(data => {
+                    console.log(data)
+                    // Redirect to the cart page or do something else after successfully adding the product to the cart
+                    alert(data.message)
+                    window.location.href = "/shoping-cart";
+                }).catch(error => {
+                    console.error('Error adding product to cart:', error);
+                });
+            } else {
+                alert("Please select a variant");
+            }
+        }
+    </script>
+
+
+
+
+
+</body>
+
+</html>

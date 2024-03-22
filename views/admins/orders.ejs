@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product category </title>
+
+  <link rel="stylesheet" href="/admin_asset/assets/css/styles.min.css">
+
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css">
+
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th,
+    td {
+      border: 1px solid #ddd;
+      /* Border style for all th and td */
+      padding: 8px;
+      /* Padding for all th and td */
+      text-align: center;
+      /* Center text in th */
+    }
+
+    th {
+      background-color: rgb(112, 7, 7);
+      color: white;
+    }
+
+    td {
+      /* Add space between td elements in tbody */
+      margin: 4px;
+    }
+
+    .wt {
+      font-weight: 500;
+    }
+    .tbl{
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
+      <!-- Sidebar scroll-->
+      <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+          <a href="./index.html" class="text-nowrap logo-img">
+            <img src="/Borcelle white.png" width="155" alt="" style="margin-left: 20px; margin-top: 10px;" />
+          </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+          <ul id="sidebarnav">
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/dashboard" aria-expanded="false">
+                <span>
+                  <i class="ti ti-layout-dashboard"></i>
+                </span>
+                <span class="hide-menu">Dashboard</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/users-list" aria-expanded="false">
+                <span>
+                  <i class="ti ti-article"></i>
+                </span>
+                <span class="hide-menu">Customers</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/products" aria-expanded="false">
+                <span>
+                  <i class="ti ti-shopping-cart"></i>
+                </span>
+                <span class="hide-menu">Products</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/categories" aria-expanded="false">
+                <span>
+                  <i class="ti ti-cards"></i>
+                </span>
+                <span class="hide-menu">Categories</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/orders" aria-expanded="false"
+                style="background-color: rgb(112, 7, 7);">
+                <span>
+                  <i class="ti ti-file-description"></i>
+                </span>
+                <span class="hide-menu">Orders</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/product-coupon" aria-expanded="false">
+                <span>
+                  <i class="ti ti-tag"></i>
+                </span>
+                <span class="hide-menu">Coupons</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/product-offer" aria-expanded="false">
+                <span>
+                  <i class="ti ti-discount"></i>
+                </span>
+                <span class="hide-menu">Offer</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/banners" aria-expanded="false" style="color: black;">
+                <span>
+                  <i class="ti ti-aperture"></i>
+                </span>
+                <span class="hide-menu">Banner</span>
+              </a>
+            </li>
+            <li class="sidebar-item" style="margin-top: 30px; width: 180px; margin-left: 17px;">
+              <a class="sidebar-link" href="/admin/logout" aria-expanded="false"
+              style="background-color: rgb(112, 7, 7); padding-left: 59px;">
+                <span class="hide-menu" style="color: aliceblue;">Logout</span>
+              </a>
+            </li>
+        </nav>
+        <!-- End Sidebar navigation -->
+      </div>
+      <!-- End Sidebar scroll-->
+    </aside>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      <!--  Header Start -->
+      
+      <!--  Header End -->
+      <div class="container-fluid">
+        <table id="dataTable" class="tbl">
+          <thead>
+            <tr>
+              <th style="text-align: center;">No.</th>
+              <th style="text-align: center;">Date</th>
+              <th style="text-align: center;">OrderID</th>
+              <th style="text-align: center;">Customer</th>
+              <th style="text-align: center;">Products</th>
+              <th style="text-align: center;">Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% var count=1 %>
+              <% orders.forEach(order=> { %>
+                <tr>
+                  <td class="wt">
+                    <%= count++ %>
+                  </td>
+                  <td class="wt">
+                    <%= order.orderedDate.toLocaleDateString() %>
+                  </td>
+                  <td class="wt">
+                    <%= order._id %>
+                  </td>
+                  <td class="wt">
+                    <%= order.userId.name %>
+                  </td>
+                  <td class="wt">
+                    <% if (order.items && Array.isArray(order.items)) { %>
+                      <% order.items.forEach(item=> { %>
+                        <% if (item.productId && item.productId.name) { %>
+                          &bull; <%= item.productId.name %> &nbsp;(<%= item.variant %>)<br>
+                              <% } %>
+                                <% }) %>
+                                  <% } %>
+                  </td>
+
+                  <td class="wt" style="color: darkgoldenrod;">
+                    <% order.items.forEach(item=>{ %>
+                      &bull; <%= item.orderStatus %><br>
+                        <% }) %>
+                  </td>
+
+                  <td><a href='/admin/order-details?id=<%= order._id %>'
+                      style="color: rgba(112, 7, 7, 0.84); font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; text-decoration: underline;">DETAILS</a>
+                  </td>
+                </tr>
+                <% }); %>
+          </tbody>
+        </table>
+      </div>
+      <script src="/admin_asset/assets/libs/jquery/dist/jquery.min.js"></script>
+      <script src="/admin_asset/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="/admin_asset/assets/js/sidebarmenu.js"></script>
+      <script src="/admin_asset/assets/js/app.min.js"></script>
+      <script src="/admin_asset/assets/libs/simplebar/dist/simplebar.js"></script>
+
+
+      <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+
+      <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
+      <script>
+        $(document).ready(function () {
+          $('#dataTable').DataTable();
+        });
+      </script>
+
+</body>
+
+</html>

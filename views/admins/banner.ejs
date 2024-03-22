@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products</title>
+
+  <link rel="stylesheet" href="/admin_asset/assets/css/styles.min.css">
+
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css">
+
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: cornflowerblue;
+      color: aliceblue;
+    }
+  </style>
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
+      <!-- Sidebar scroll-->
+      <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+          <a href="./index.html" class="text-nowrap logo-img">
+            <img src="/Borcelle white.png" width="155" alt="" style="margin-left: 20px; margin-top: 10px;" />
+          </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+          <ul id="sidebarnav">
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/dashboard" aria-expanded="false">
+                <span>
+                  <i class="ti ti-layout-dashboard"></i>
+                </span>
+                <span class="hide-menu">Dashboard</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/users-list" aria-expanded="false">
+                <span>
+                  <i class="ti ti-article"></i>
+                </span>
+                <span class="hide-menu">Customers</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/products" aria-expanded="false">
+                <span>
+                  <i class="ti ti-shopping-cart"></i>
+                </span>
+                <span class="hide-menu">Products</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/categories" aria-expanded="false">
+                <span>
+                  <i class="ti ti-cards"></i>
+                </span>
+                <span class="hide-menu">Categories</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/orders" aria-expanded="false">
+                <span>
+                  <i class="ti ti-file-description"></i>
+                </span>
+                <span class="hide-menu">Orders</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/product-coupon" aria-expanded="false">
+                <span>
+                  <i class="ti ti-tag"></i>
+                </span>
+                <span class="hide-menu">Coupons</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/admin/product-offer" aria-expanded="false">
+                <span>
+                  <i class="ti ti-discount"></i>
+                </span>
+                <span class="hide-menu">Offer</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="" aria-expanded="false" style="background-color: rgb(112, 7, 7);">
+                <span>
+                  <i class="ti ti-discount"></i>
+                </span>
+                <span class="hide-menu">Banner</span>
+              </a>
+            </li>
+            <li class="sidebar-item" style="margin-top: 30px; width: 180px; margin-left: 17px;">
+              <a class="sidebar-link" href="/admin/logout" aria-expanded="false"
+                style="background-color: rgb(112, 7, 7); padding-left: 59px;">
+                <span class="hide-menu" style="color: aliceblue;">Logout</span>
+              </a>
+            </li>
+        </nav>
+        <!-- End Sidebar navigation -->
+      </div>
+      <!-- End Sidebar scroll-->
+    </aside>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      <!--  Header Start -->
+
+
+      <!--  Header End -->
+      <div class="container-fluid">
+        <table id="dataTable" class="tbl">
+          <thead>
+            <tr>
+              <th style="background-color: rgb(112, 7, 7);text-align: center;">Image</th>
+              <th style="background-color: rgb(112, 7, 7);text-align: center;">Name</th>
+              <th style="background-color: rgb(112, 7, 7);text-align: center;">Link</th>
+              <th style="background-color: rgb(112, 7, 7);text-align: center;">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% banners.forEach(banner=>{ %>
+              <tr>
+                <td><img src="/bannerImages/<%= banner.image %>" alt="<%= banner.name %> image"
+                    style="height: 70px; width: auto;"></td>
+                <td>
+                  <%= banner.name %>
+                </td>
+                <td>
+                  <%= banner.link %>
+                </td>
+                <td>
+                  <button type="button"
+                          class="btn actionbtn <%= banner.is_listed ? 'btn-danger':'btn-success'  %>"
+                          data-banner-id="<%= banner._id %>"
+                          data-banner-state="<%= banner.is_listed ? 'List' : 'Unlist' %>" style="min-width: 70px;">
+                          <%= banner.is_listed ? 'Unlist' : 'List' %>
+                        </button>
+                  <button type="button" onclick="deleteBanner('<%= banner._id %>')" style="background-color: rgb(112, 7, 7); color: aliceblue; border: 0; width: 60px; height: 36px; border-radius: 4px; ">Delete</button>
+                </td>
+              </tr>
+              <% }) %>
+          </tbody>
+
+        </table>
+        <br>
+        <a href="/admin/add-banner"><button style="background-color: rgb(112, 7, 7); color: aliceblue; border: 0; width: 130px; height: 25px;">
+            Add banner
+          </button></a>
+      </div>
+
+
+      <script src="/admin_asset/assets/libs/jquery/dist/jquery.min.js"></script>
+      <script src="/admin_asset/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="/admin_asset/assets/js/sidebarmenu.js"></script>
+      <script src="/admin_asset/assets/js/app.min.js"></script>
+      <script src="/admin_asset/assets/libs/simplebar/dist/simplebar.js"></script>
+
+      <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+
+      <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
+      <script>
+        $(document).ready(function () {
+          $('#dataTable').DataTable();
+        });
+      </script>
+
+<script>
+  function deleteBanner(bannerId) {
+    fetch('/admin/delete-banner', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ bannerId })
+    })
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error('Network response was not ok');
+    })
+    .then(data => {
+      alert(data.message);
+      window.location.reload()
+    })
+    .catch(error => {
+      alert('Error deleting banner: ' + error.message);
+    });
+  }
+</script>
+
+<script>
+  document.querySelectorAll('.actionbtn').forEach(function (button) {
+    button.addEventListener('click', function () {
+      let bannerId = this.getAttribute('data-banner-id');
+      let currentState = this.getAttribute('data-banner-state');
+
+      let url;
+
+      if (currentState === 'List') {
+        url = '/admin/unlist-banner';
+      } else {
+        url = '/admin/list-banner';
+      }
+
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ bannerId })
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            console.log(data)
+            // Update button state
+            this.setAttribute('data-banner-state', data.message.includes('unlisted') ? 'Unlist' : 'List');
+            this.textContent = data.message.includes('unlisted') ? 'List' : 'Unlist';
+            this.classList.toggle('btn-danger');
+            this.classList.toggle('btn-success');
+            alert(data.message);
+          } else {
+            alert('Toggle block failed');
+          }
+        })
+        .catch(error => {
+          console.error(error);
+          alert('An error occurred during toggle block');
+        });
+    });
+  });
+</script>
+
+</body>
+
+</html>

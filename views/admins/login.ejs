@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin login</title>
+    <script>
+        window.onload = function() {
+            var message = "<%= message %>";
+            if (message && message.trim() !== "") {
+                alert(message);
+            }
+        };
+    </script>
+
+</head>
+<body style="background-color: rgb(112, 7, 7);">
+    <div style="margin: 50px; margin-top: 100px;">
+    <div style="margin-left: 550px; margin-top: 30px;"><img src="borcelle real.png" alt="Logo" style="height: 200px; width: 250px;" ></div>
+
+    
+    <form method="post" style="margin-top: 20px;">
+        <label for="email" style="margin-left: 455px; font-family: 'Times New Roman', Times, serif; color: rgb(229, 227, 227);">Email</label>
+        <br>
+        <input type="email" name="email" placeholder="Enter your email here" style="width: 450px; height: 30px; margin-left: 450px; margin-bottom: 15px; font-family: 'Times New Roman', Times, serif; padding-left: 9px;">
+        <br>
+        <label for="password" style="margin-left: 455px; font-family: 'Times New Roman', Times, serif; color: aliceblue; color: rgb(229, 227, 227);">Password</label>
+        <br>
+        <input type="password" name="password" placeholder="Enter your password here" style="width: 450px; height: 30px; margin-left: 450px; font-family: 'Times New Roman', Times, serif; padding-left: 9px;">
+        <br>
+        <br>
+        <input type="submit" value="Log in" style="cursor: pointer; margin-left: 630px; font-family: 'Times New Roman', Times, serif; width: 100px; height: 23px; margin-top: 7px;">
+    </form>
+</div>
+</body>
+</html>
