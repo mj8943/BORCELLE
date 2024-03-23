@@ -210,14 +210,28 @@
                   this.textContent = data.message.includes('unblocked') ? 'Block' : 'Unblock';
                   this.classList.toggle('btn-danger');
                   this.classList.toggle('btn-success');
-                  alert(data.message); // Display a message or handle UI updates as needed
+                  Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: data.message,
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
                 } else {
-                  alert('Toggle block failed');
+                  Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: 'Toggle block failed'
+                  });
                 }
               })
               .catch(error => {
                 console.error(error);
-                alert('An error occurred during toggle block');
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: 'An error occurred during toggle block'
+                  });
               });
           });
         });

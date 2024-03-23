@@ -157,13 +157,13 @@
                   <%= banner.link %>
                 </td>
                 <td>
-                  <button type="button"
-                          class="btn actionbtn <%= banner.is_listed ? 'btn-danger':'btn-success'  %>"
-                          data-banner-id="<%= banner._id %>"
-                          data-banner-state="<%= banner.is_listed ? 'List' : 'Unlist' %>" style="min-width: 70px;">
-                          <%= banner.is_listed ? 'Unlist' : 'List' %>
-                        </button>
-                  <button type="button" onclick="deleteBanner('<%= banner._id %>')" style="background-color: rgb(112, 7, 7); color: aliceblue; border: 0; width: 60px; height: 36px; border-radius: 4px; ">Delete</button>
+                  <button type="button" class="btn actionbtn <%= banner.is_listed ? 'btn-danger':'btn-success'  %>"
+                    data-banner-id="<%= banner._id %>" data-banner-state="<%= banner.is_listed ? 'List' : 'Unlist' %>"
+                    style="min-width: 70px;">
+                    <%= banner.is_listed ? 'Unlist' : 'List' %>
+                  </button>
+                  <button type="button" onclick="deleteBanner('<%= banner._id %>')"
+                    style="background-color: rgb(112, 7, 7); color: aliceblue; border: 0; width: 60px; height: 36px; border-radius: 4px; ">Delete</button>
                 </td>
               </tr>
               <% }) %>
@@ -171,7 +171,8 @@
 
         </table>
         <br>
-        <a href="/admin/add-banner"><button style="background-color: rgb(112, 7, 7); color: aliceblue; border: 0; width: 130px; height: 25px;">
+        <a href="/admin/add-banner"><button
+            style="background-color: rgb(112, 7, 7); color: aliceblue; border: 0; width: 130px; height: 25px;">
             Add banner
           </button></a>
       </div>
@@ -183,6 +184,8 @@
       <script src="/admin_asset/assets/js/app.min.js"></script>
       <script src="/admin_asset/assets/libs/simplebar/dist/simplebar.js"></script>
 
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
       <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
 
       <script type="text/javascript" charset="utf8"
@@ -193,73 +196,97 @@
         });
       </script>
 
-<script>
-  function deleteBanner(bannerId) {
-    fetch('/admin/delete-banner', {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ bannerId })
-    })
-    .then(response => {
-      if (response.ok) {
-        return response.json();
-      }
-      throw new Error('Network response was not ok');
-    })
-    .then(data => {
-      alert(data.message);
-      window.location.reload()
-    })
-    .catch(error => {
-      alert('Error deleting banner: ' + error.message);
-    });
-  }
-</script>
+      <script>
+        function deleteBanner(bannerId) {
+          fetch('/admin/delete-banner', {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ bannerId })
+          })
+            .then(response => {
+              if (response.ok) {
+                return response.json();
+              }
+              throw new Error('Network response was not ok');
+            })
+            .then(data => {
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: data.message,
+                showConfirmButton: false,
+                timer: 1500
+              });
+              window.location.reload()
+            })
+            .catch(error => {
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: 'Error deleting banner: ' + error.message
+              });
+            });
+        }
+      </script>
 
-<script>
-  document.querySelectorAll('.actionbtn').forEach(function (button) {
-    button.addEventListener('click', function () {
-      let bannerId = this.getAttribute('data-banner-id');
-      let currentState = this.getAttribute('data-banner-state');
+      <script>
+        document.querySelectorAll('.actionbtn').forEach(function (button) {
+          button.addEventListener('click', function () {
+            let bannerId = this.getAttribute('data-banner-id');
+            let currentState = this.getAttribute('data-banner-state');
 
-      let url;
+            let url;
 
-      if (currentState === 'List') {
-        url = '/admin/unlist-banner';
-      } else {
-        url = '/admin/list-banner';
-      }
+            if (currentState === 'List') {
+              url = '/admin/unlist-banner';
+            } else {
+              url = '/admin/list-banner';
+            }
 
-      fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ bannerId })
-      })
-        .then(response => response.json())
-        .then(data => {
-          if (data.success) {
-            console.log(data)
-            // Update button state
-            this.setAttribute('data-banner-state', data.message.includes('unlisted') ? 'Unlist' : 'List');
-            this.textContent = data.message.includes('unlisted') ? 'List' : 'Unlist';
-            this.classList.toggle('btn-danger');
-            this.classList.toggle('btn-success');
-            alert(data.message);
-          } else {
-            alert('Toggle block failed');
-          }
-        })
-        .catch(error => {
-          console.error(error);
-          alert('An error occurred during toggle block');
+            fetch(url, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ bannerId })
+            })
+              .then(response => response.json())
+              .then(data => {
+                if (data.success) {
+                  console.log(data)
+                  // Update button state
+                  this.setAttribute('data-banner-state', data.message.includes('unlisted') ? 'Unlist' : 'List');
+                  this.textContent = data.message.includes('unlisted') ? 'List' : 'Unlist';
+                  this.classList.toggle('btn-danger');
+                  this.classList.toggle('btn-success');
+                  Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: data.message,
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                } else {
+                  Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: 'Toggle block failed'
+                  });
+                }
+              })
+              .catch(error => {
+                console.error(error);
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: 'An error occurred during toggle block'
+                  });
+              });
+          });
         });
-    });
-  });
-</script>
+      </script>
 
 </body>
 

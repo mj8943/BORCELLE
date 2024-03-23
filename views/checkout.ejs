@@ -424,6 +424,8 @@
 
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
         let orderId;
 
@@ -451,7 +453,24 @@
         function checkPlaceOrder() {
             const selectedPaymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
             if (!addressId || !selectedPaymentMethod) {
-                alert('Please choose both an address and a payment method.');
+
+                Swal.fire({
+                    title: "Please choose both an address and a payment method",
+                    showClass: {
+                        popup: `
+      animate__animated
+      animate__fadeInUp
+      animate__faster
+    `
+                    },
+                    hideClass: {
+                        popup: `
+      animate__animated
+      animate__fadeOutDown
+      animate__faster
+    `
+                    }
+                });
                 return
             }
 
@@ -480,7 +499,7 @@
                 currency: "INR",
                 name: "BORCELLE fashion",
                 description: "Test Transaction",
-                image:"Borcelle white.png",
+                image: "Borcelle white.png",
                 order_id: orderId,
                 handler: async function (response) {
                     const paymentData = {
@@ -516,7 +535,11 @@
             var rzp1 = new Razorpay(options);
 
             rzp1.on("payment.failed", function (response) {
-                alert(response.error.description);
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: response.error.description
+                });
             });
             rzp1.open();
         }
@@ -525,7 +548,23 @@
         function placeOrder(totalPrice) {
             const selectedPaymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
             if (!addressId || !selectedPaymentMethod) {
-                alert('Please choose both an address and a payment method.');
+                Swal.fire({
+                    title: "Please choose both an address and a payment method",
+                    showClass: {
+                        popup: `
+      animate__animated
+      animate__fadeInUp
+      animate__faster
+    `
+                    },
+                    hideClass: {
+                        popup: `
+      animate__animated
+      animate__fadeOutDown
+      animate__faster
+    `
+                    }
+                });
                 return
             }
             let couponValue = null;
@@ -554,7 +593,12 @@
                     return response.json();
                 } else {
                     return response.json().then(data => {
-                        alert(data.message || 'Failed to place order');
+
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: data.message || 'Failed to place order'
+                        });
                     });
                 }
             })
@@ -629,7 +673,23 @@
 
             // Simple form validation
             if (!fullname || !mobile || !pincode || !city || !state || !house_no || !area) {
-                alert("Please fill in all fields.");
+                Swal.fire({
+                    title: "Please fill in all fields.",
+                    showClass: {
+                        popup: `
+      animate__animated
+      animate__fadeInUp
+      animate__faster
+    `
+                    },
+                    hideClass: {
+                        popup: `
+      animate__animated
+      animate__fadeOutDown
+      animate__faster
+    `
+                    }
+                });
                 return;
             }
 

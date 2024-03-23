@@ -28,6 +28,8 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
         document.getElementById('editCategoryForm').addEventListener('submit', function (event) {
             const newName = document.getElementById('newName').value.trim();
@@ -35,7 +37,11 @@
 
             // Check if newName or newDescription is empty
             if (newName === '' || newDescription === '') {
-                alert('Please fill in all fields');
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: 'Please fill in all fields'
+                  });
                 event.preventDefault(); // Prevent form submission
             }
         });

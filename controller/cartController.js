@@ -17,6 +17,7 @@ const productCart = async (req, res) => {
       const products = await Cart.findOne({ userId: userId })
         .populate("items.productId")
         .populate("userId");
+        console.log(products);
       res.render("shopingCart", { products, user, coupon });
       console.log("add to cart page renderd");
     } else {

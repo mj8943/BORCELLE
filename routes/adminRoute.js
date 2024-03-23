@@ -23,7 +23,8 @@ const storage = multer.diskStorage({
       cb(null, 'public/bannerImages'); 
     },
     filename: function (req, file, cb) {
-      cb(null, Date.now() + '-'); 
+      let ext=file.originalname.slice(file.originalname.lastIndexOf("."))
+      cb(null, Date.now() + '-' + req.body.name+ext); 
     },
   });
 

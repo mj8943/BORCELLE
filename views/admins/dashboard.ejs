@@ -322,6 +322,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.20/jspdf.plugin.autotable.min.js"></script>
 
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <script>
     function download() {
@@ -407,13 +408,29 @@
       } else {
         // Check which condition failed and display appropriate error message
         if (!start || !end) {
-          alert("Please select both start and end dates.");
+          Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Please select both start and end dates."
+                  });
         } else if (start > end) {
-          alert("End date should be greater than or equal to the start date.");
+          Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "End date should be greater than or equal to the start date."
+                  });
         } else if (startDate > currentDate) {
-          alert("Start date cannot be greater than the current date.");
+          Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Start date cannot be greater than the current date."
+                  });
         } else {
-          alert("Invalid date range. Please select a valid range.");
+          Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Invalid date range. Please select a valid range."
+                  });
         }
       }
     }

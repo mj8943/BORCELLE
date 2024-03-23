@@ -225,6 +225,8 @@
       <script src="/admin_asset/assets/js/app.min.js"></script>
       <script src="/admin_asset/assets/libs/simplebar/dist/simplebar.js"></script>
 
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
       <script>
         document.querySelectorAll('.actionbtn').forEach(function (button) {
           button.addEventListener('click', function () {
@@ -254,14 +256,28 @@
                   this.textContent = data.message.includes('Unlisted') ? 'List' : 'Unlist';
                   this.classList.toggle('btn-success');
                   this.classList.toggle('btn-danger');
-                  alert(data.message); // Display a message or handle UI updates as needed
+                  Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: data.message,
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
                 } else {
-                  alert('Toggle block failed');
+                  Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: 'Toggle block failed'
+              });
                 }
               })
               .catch(error => {
                 console.error(error);
-                alert('An error occurred during toggle block');
+                Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: 'An error occurred during toggle block'
+              });
               });
           });
         });
@@ -293,15 +309,29 @@
             .then(response => response.json())
             .then(data => {
               if (data.success) {
-                alert("Offer applied to the category!");
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "Offer applied to the category!",
+                  showConfirmButton: false,
+                  timer: 1500
+                });
                 window.location.reload();
               } else {
-                alert('Applying offer failed');
+                Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: 'Applying offer failed'
+              });
               }
             })
             .catch(error => {
               console.error(error);
-              alert('An error occurred while applying offer');
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: 'An error occurred while applying offer'
+              });
             });
         }
 

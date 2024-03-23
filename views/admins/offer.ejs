@@ -156,7 +156,8 @@
                   <%= offer.discountOffer %>
                 </td>
                 <td>
-                  <button type="button" onclick="offerDelete('<%= offer._id %>')" style="background-color: rgb(112, 7, 7); color: aliceblue; border: 0; width: 60px;">Delete</button>
+                  <button type="button" onclick="offerDelete('<%= offer._id %>')"
+                    style="background-color: rgb(112, 7, 7); color: aliceblue; border: 0; width: 60px;">Delete</button>
                 </td>
               </tr>
               <% }) %>
@@ -174,6 +175,7 @@
       <script src="/admin_asset/assets/js/app.min.js"></script>
       <script src="/admin_asset/assets/libs/simplebar/dist/simplebar.js"></script>
 
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
       <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
 
@@ -185,7 +187,7 @@
         });
       </script>
       <script>
-        function offerDelete(offerId){
+        function offerDelete(offerId) {
           fetch('/admin/product-offer', {
             method: "DELETE",
             headers: {
@@ -197,15 +199,29 @@
           })
             .then(response => {
               if (response.ok) {
-                alert("Offer deleted successfully");
+                Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "Offer deleted successfully",
+                  showConfirmButton: false,
+                  timer: 1500
+                });
                 window.location.reload()
               } else {
-                alert("Failed to delete offer");
+                Swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: "Failed to delete offer"
+                });
               }
             })
             .catch(error => {
               console.error('Error deleting offer:', error);
-              alert("An error occurred while deleting the offer");
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "An error occurred while deleting the offer"
+              });
             });
         } 
       </script>

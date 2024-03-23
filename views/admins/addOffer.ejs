@@ -177,6 +177,8 @@
             <script src="/admin_asset/assets/js/sidebarmenu.js"></script>
             <script src="/admin_asset/assets/js/app.min.js"></script>
             <script src="/admin_asset/assets/libs/simplebar/dist/simplebar.js"></script>
+            
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
             <script>
@@ -187,7 +189,11 @@
                     var discountOffer = document.getElementById("discountOffer").value.trim();
         
                     if (!offerName || !validFrom || !expiry || !discountOffer) {
-                        alert("All fields are required");
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "All fields are required"
+                        });
                         return false;
                     }
         

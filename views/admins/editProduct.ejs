@@ -331,6 +331,8 @@
     <script src="/admin_asset/assets/js/app.min.js"></script>
     <script src="/admin_asset/assets/libs/simplebar/dist/simplebar.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script> // image remove button 
       document.querySelectorAll('.image-container').forEach(container => {
         container.addEventListener('mouseenter', () => {
@@ -382,7 +384,7 @@
         const maxImages = 4;
 
         if (files.length + addedFiles.length > maxImages) {
-          alert(`You can add up to ${maxImages} images.`);
+          Swal.fire(`You can add up to ${maxImages} images.`);
 
           event.target.value = "";
           return;

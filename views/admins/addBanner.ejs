@@ -170,28 +170,34 @@
     <script src="/admin_asset/assets/js/app.min.js"></script>
     <script src="/admin_asset/assets/libs/simplebar/dist/simplebar.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
       document.getElementById("bannerForm").addEventListener("submit", function (event) {
         var name = document.getElementById("name").value.trim();
         var image = document.getElementById("image").value.trim();
         var link = document.getElementById("link").value.trim();
         var description = document.getElementById("description").value.trim();
-    
+
         if (name === "" || image === "" || link === "" || description === "") {
-          alert("All fields are required");
+          Swal.fire("All fields are required!");
           event.preventDefault();
           return;
         }
-    
+
         var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
         if (!allowedExtensions.exec(image)) {
-          alert("Please upload an image file with the following extensions: .jpg, .jpeg, .png");
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Please upload an image file with the following extensions: .jpg, .jpeg, .png"
+          });
           event.preventDefault();
           return;
         }
       });
     </script>
-    
+
 
 </body>
 

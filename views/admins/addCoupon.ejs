@@ -167,6 +167,8 @@
             <script src="/admin_asset/assets/js/app.min.js"></script>
             <script src="/admin_asset/assets/libs/simplebar/dist/simplebar.js"></script>
 
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
             <script>
                 function couponForm() {
                     var form = document.getElementById("couponData");
@@ -178,13 +180,21 @@
 
                     // Check for non-empty fields
                     if (!couponCode || discountAmount <= 0 || minimumSpend <= 0 || !startDate || !endDate) {
-                        alert("All fields are required and must have valid values");
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "All fields are required and must have valid values"
+                        });
                         return false; // Prevent form submission
                     }
 
                     // Check if end date is after start date
                     if (endDate <= startDate) {
-                        alert("End date must be after start date");
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "End date must be after start date"
+                        });
                         return false; // Prevent form submission
                     }
 

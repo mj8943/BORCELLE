@@ -17,11 +17,13 @@
             margin-left: 330px;
             padding-left: 10px;
         }
-        .lab{
+
+        .lab {
             margin-top: 5px;
             margin-left: 330px;
         }
-        .bt{
+
+        .bt {
             margin-top: 50px;
             margin-bottom: 50px;
             width: 80px;
@@ -142,7 +144,8 @@
               margin-left: 20px; height: 50px; font-size: xx-large; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">
                 EDIT COUPON
             </div>
-            <div style="background-color: rgba(197, 127, 127, 0.414); margin-left: 20px; margin-right: 45px; padding-top: 30px;">
+            <div
+                style="background-color: rgba(197, 127, 127, 0.414); margin-left: 20px; margin-right: 45px; padding-top: 30px;">
                 <form method="post" id="couponData">
                     <input type="hidden" name="id" value="<%= coupon._id %>">
                     <label for="couponCode" class="lab">Enter coupon code:</label><br>
@@ -172,6 +175,8 @@
             <script src="/admin_asset/assets/js/app.min.js"></script>
             <script src="/admin_asset/assets/libs/simplebar/dist/simplebar.js"></script>
 
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
             <script>
                 function couponForm() {
                     var form = document.getElementById("couponData");
@@ -182,12 +187,20 @@
                     var endDate = new Date(form.elements["endDate"].value.trim());
 
                     if (!couponCode || discountAmount <= 0 || minimumSpend <= 0 || !startDate || !endDate) {
-                        alert("All fields are required and must have valid values");
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: 'All fields are required and must have valid values'
+                        });
                         return false;
                     }
 
                     if (endDate <= startDate) {
-                        alert("End date must be after start date");
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: 'End date must be after start date'
+                        });
                         return false;
                     }
 

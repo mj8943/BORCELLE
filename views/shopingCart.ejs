@@ -260,7 +260,8 @@
                                                                             product.variant %>)
                                                                 </h6>
                                                                 <% if(product.productId.finalPrice){ %>
-                                                                    <h5 style="color: red;">&#8377;<%= product.productId.finalPrice %>
+                                                                    <h5 style="color: red;">&#8377;<%=
+                                                                            product.productId.finalPrice %>
                                                                     </h5>
                                                                     <% }else{ %>
                                                                         <h5>&#8377;<%= product.productId.price %>
@@ -284,11 +285,13 @@
                                                             </div>
                                                         </td>
                                                         <td class="cart__price">&#8377;<span id="price">
-                                                            <% if(product.productId.finalPrice){ %>
-                                                                <%= product.productId.finalPrice * product.quantity %>
-                                                            <% }else{ %>
-                                                                <%= product.productId.price * product.quantity %>
-                                                                <% } %>
+                                                                <% if(product.productId.finalPrice){ %>
+                                                                    <%= product.productId.finalPrice * product.quantity
+                                                                        %>
+                                                                        <% }else{ %>
+                                                                            <%= product.productId.price *
+                                                                                product.quantity %>
+                                                                                <% } %>
                                                             </span></td>
                                                         <td class="cart__close">
 
@@ -298,12 +301,14 @@
                                                         </td>
                                                         </tr>
                                                         <% if(product.productId.finalPrice){ %>
-                                                            <% totalPrice +=product.productId.finalPrice * product.quantity %>
-                                                        <% }else{ %>
-                                                            <% totalPrice +=product.productId.price * product.quantity %>
-                                                            <% } %>
-                                                            <% } %>
-                                                                <% }) %>
+                                                            <% totalPrice +=product.productId.finalPrice *
+                                                                product.quantity %>
+                                                                <% }else{ %>
+                                                                    <% totalPrice +=product.productId.price *
+                                                                        product.quantity %>
+                                                                        <% } %>
+                                                                            <% } %>
+                                                                                <% }) %>
 
                             </tbody>
                         </table>
@@ -460,6 +465,9 @@
     <script src="user_asset/js/owl.carousel.min.js"></script>
     <script src="user_asset/js/main.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             // Find the quantity input and buttons
@@ -543,7 +551,11 @@
 
                     totalPriceElement.textContent = newTotalPrice.toFixed(2);
                 } else {
-                    alert("Failed to update quantity");
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Failed to update quantity!"
+                    });
                 }
             };
 
@@ -565,7 +577,11 @@
                     console.log(removedData);
                     window.location.reload();
                 } else {
-                    alert("Failed to remove item");
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Failed to remove item!"
+                    });
                 }
             }
         });
@@ -573,9 +589,9 @@
         function checkoutPage() {
             const coupon = document.getElementById('couponOffer').value;
             console.log("checkout", coupon);
-            let url="/check-out"
-            if(coupon){
-                url+=`?coupon=${encodeURIComponent(coupon)}`
+            let url = "/check-out"
+            if (coupon) {
+                url += `?coupon=${encodeURIComponent(coupon)}`
             }
 
             window.location.href = url;
@@ -584,7 +600,23 @@
         }
 
         function empty() {
-            alert('Your cart is empty, Shop now !!')
+            Swal.fire({
+                title: "Your cart is empty, Shop now !!",
+                showClass: {
+                    popup: `
+      animate__animated
+      animate__fadeInUp
+      animate__faster
+    `
+                },
+                hideClass: {
+                    popup: `
+      animate__animated
+      animate__fadeOutDown
+      animate__faster
+    `
+                }
+            });
         }
 
         function couponApply() {

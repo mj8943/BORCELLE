@@ -191,11 +191,12 @@
                 <td>
                   <%= product.category %>
                 </td>
-                <td><% if(product.finalPrice) { %>
-                  &#8377; <%= product.finalPrice %>
-                  <% }else{ %>
-                  &#8377; <%= product.price %>
-                  <% } %>
+                <td>
+                  <% if(product.finalPrice) { %>
+                    &#8377; <%= product.finalPrice %>
+                      <% }else{ %>
+                        &#8377; <%= product.price %>
+                          <% } %>
                 </td>
                 <td>
                   <%= product.description %>
@@ -215,7 +216,8 @@
                   <td>
                     <%=product.discount.offerName %> &nbsp; offer &nbsp; &#8377;&nbsp;<%= product.discount.discountOffer
                         %>
-                        <button type="button" class="removeOfferBtn" style="background-color: rgb(112, 7, 7); color: aliceblue; "
+                        <button type="button" class="removeOfferBtn"
+                          style="background-color: rgb(112, 7, 7); color: aliceblue; "
                           data-product-id="<%= product._id %>">Remove</button>
                   </td>
                   <% } else{%>
@@ -264,7 +266,7 @@
       <script src="/admin_asset/assets/js/app.min.js"></script>
       <script src="/admin_asset/assets/libs/simplebar/dist/simplebar.js"></script>
 
-
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
       <script>
         document.querySelectorAll('.actionbtn').forEach(function (button) {
@@ -296,14 +298,28 @@
                   this.textContent = data.message.includes('unlisted') ? 'List' : 'Unlist';
                   this.classList.toggle('btn-danger');
                   this.classList.toggle('btn-success');
-                  alert(data.message);
+                  Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: data.message,
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
                 } else {
-                  alert('Toggle block failed');
+                  Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: 'Toggle block failed'
+                  });
                 }
               })
               .catch(error => {
                 console.error(error);
-                alert('An error occurred during toggle block');
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: 'An error occurred during toggle block'
+                  });
               });
           });
         });
@@ -336,15 +352,29 @@
             .then(response => response.json())
             .then(data => {
               if (data.success) {
-                alert("Offer applied to the product!");
+                Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "Offer applied to the product!",
+                  showConfirmButton: false,
+                  timer: 1500
+                });
                 window.location.reload();
               } else {
-                alert('Applying offer failed');
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: 'Applying offer failed'
+                  });
               }
             })
             .catch(error => {
               console.error(error);
-              alert('An error occurred while applying offer');
+              Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: 'An error occurred while applying offer'
+                  });
             });
         }
 
@@ -362,15 +392,29 @@
             }).then(response => response.json())
               .then(data => {
                 if (data.success) {
-                  alert("Offer removed!");
-                window.location.reload();
+                  Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Offer removed!",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                  window.location.reload();
                 } else {
-                  alert('Offer removal failed');
+                  Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: 'Offer removal failed'
+                  });
                 }
               })
               .catch(error => {
                 console.error(error);
-                alert('An error occurred while removing offer');
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: 'An error occurred while removing offer'
+                  });
               });
 
           });

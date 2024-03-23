@@ -109,7 +109,7 @@
             </li>
             <li class="sidebar-item" style="margin-top: 30px; width: 180px; margin-left: 17px;">
               <a class="sidebar-link" href="" aria-expanded="false"
-              style="background-color: rgb(112, 7, 7); padding-left: 49px;">
+                style="background-color: rgb(112, 7, 7); padding-left: 49px;">
                 <span>
                   <i class="ti ti-power-off"></i>
                 </span>
@@ -227,6 +227,7 @@
       <script src="/admin_asset/assets/js/app.min.js"></script>
       <script src="/admin_asset/assets/libs/simplebar/dist/simplebar.js"></script>
 
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
       <script>
         function submit() {
@@ -257,7 +258,11 @@
                 console.error(error);
               });
           } catch (error) {
-            alert("error on order status");
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: 'error on order status'
+            });
           }
         }
       </script>

@@ -246,85 +246,94 @@
                                         </div>
                                         <% if(product[0].finalPrice){ %>
                                             <br>
-                                            <p style="color: red;"><%= product[0].discount.offerName %> offer &#8377;<%= product[0].discountPrice %> off</p>
-                                                <h3>&#8377;<%= product[0].finalPrice %>
-                                                </h3>
-                                                <h5 style="color: red; font-weight: 700; text-decoration: line-through;">&#8377;<%= product[0].price %>
-                                                </h5>
+                                            <p style="color: red;">
+                                                <%= product[0].discount.offerName %> offer &#8377;<%=
+                                                        product[0].discountPrice %> off
+                                            </p>
+                                            <h3>&#8377;<%= product[0].finalPrice %>
+                                            </h3>
+                                            <h5 style="color: red; font-weight: 700; text-decoration: line-through;">
+                                                &#8377;<%= product[0].price %>
+                                            </h5>
                                             <% }else{ %>
-                                                <h3>&#8377;<%= product[0].price %></h3>
+                                                <h3>&#8377;<%= product[0].price %>
+                                                </h3>
                                                 <% } %>
-                                                <p>
-                                                    <%= product[0].description %>
-                                                </p>
-                                                <div class="product__details__option" style="margin-left: 90px;">
-                                                    <div class="product__details__option__size">
+                                                    <p>
+                                                        <%= product[0].description %>
+                                                    </p>
+                                                    <div class="product__details__option" style="margin-left: 90px;">
+                                                        <div class="product__details__option__size">
 
-                                                        <% product.forEach(productItem=> { %>
-                                                            <div class="product__details__option">
-                                                                <div class="product__details__option__size">
-                                                                    <% let hasStock=false; %>
-                                                                        <%
-                                                                            Object.keys(productItem.variant).forEach(key=>
-                                                                            { %>
-                                                                            <% if (productItem.variant[key]> 0) { %>
-                                                                                <label for="<%= key %>">
-                                                                                    <%= key %>
-                                                                                        <input type="radio"
-                                                                                            id="<%= key %>">
-                                                                                </label>
-                                                                                <% hasStock=true; %>
-                                                                                    <% } %>
-                                                                                        <% }) %>
-                                                                                            <% if (!hasStock) { %>
-                                                                                                <h3
-                                                                                                    style="color: darkred;">
-                                                                                                    Out
-                                                                                                    of stock</h3>
-                                                                                                <% } %>
+                                                            <% product.forEach(productItem=> { %>
+                                                                <div class="product__details__option">
+                                                                    <div class="product__details__option__size">
+                                                                        <% let hasStock=false; %>
+                                                                            <%
+                                                                                Object.keys(productItem.variant).forEach(key=>
+                                                                                { %>
+                                                                                <% if (productItem.variant[key]> 0) { %>
+                                                                                    <label for="<%= key %>">
+                                                                                        <%= key %>
+                                                                                            <input type="radio"
+                                                                                                id="<%= key %>">
+                                                                                    </label>
+                                                                                    <% hasStock=true; %>
+                                                                                        <% } %>
+                                                                                            <% }) %>
+                                                                                                <% if (!hasStock) { %>
+                                                                                                    <h3
+                                                                                                        style="color: darkred;">
+                                                                                                        Out
+                                                                                                        of stock</h3>
+                                                                                                    <% } %>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            <% }) %>
+                                                                <% }) %>
 
 
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="product__details__cart__option">
-                                                    <button type="button" onclick="cartLoad()" class="primary-btn cart"
-                                                        id="cartBtn"
-                                                        style="background-color: rgb(112, 20, 20); color: aliceblue;">add
-                                                        to
-                                                        cart</button>
-                                                </div>
+                                                    <div class="product__details__cart__option">
+                                                        <button type="button" onclick="cartLoad()"
+                                                            class="primary-btn cart" id="cartBtn"
+                                                            style="background-color: rgb(112, 20, 20); color: aliceblue;">add
+                                                            to
+                                                            cart</button>
+                                                    </div>
                                     </div>
                                 </div>
                             </div>
 
                         </div>
                         <!-- <input type="text" value="<%= product[0].reviews %>"> -->
-                        <% if(product[0].reviews && product[0].reviews.length > 0){ %>
+                        <% if(product[0].reviews && product[0].reviews.length> 0){ %>
                             <div style="width: 100%;">
                                 <hr>
-                                <% product[0].reviews.forEach(review =>{ %>
+                                <% product[0].reviews.forEach(review=>{ %>
                                     <div>
-                                        <p>User: <%= review.user.name %></p>
-                                        <p>Rating: <%= review.rating %></p>
-                                        
-                                        <% for( let index = 0; index < 5; index++ ) { %>
+                                        <p>User: <%= review.user.name %>
+                                        </p>
+                                        <p>Rating: <%= review.rating %>
+                                        </p>
+
+                                        <% for( let index=0; index < 5; index++ ) { %>
                                             <% if(index<review.rating){%>
                                                 <i class="fa fa-star filled"></i>
-                                           <% }else{ %>
-                                                <i class="fa fa-star-o filled"></i>
-                                           <% } %>
+                                                <% }else{ %>
+                                                    <i class="fa fa-star-o filled"></i>
+                                                    <% } %>
 
-                                        <% } %>
-                                        <p>Date: <%= review.date.toLocaleDateString() %></p>
-                                        <p>Description: <%= review.description %></p>
+                                                        <% } %>
+                                                            <p>Date: <%= review.date.toLocaleDateString() %>
+                                                            </p>
+                                                            <p>Description: <%= review.description %>
+                                                            </p>
                                     </div>
                                     <hr>
-                                <% }); %>
+                                    <% }); %>
                             </div>
-                        <% } %>
+                            <% } %>
     </section>
     <!-- Shop Details Section End -->
 
@@ -403,6 +412,7 @@
     <!-- Search End -->
 
     <!-- Js Plugins -->
+
     <script src="/user_asset/js/jquery-3.3.1.min.js"></script>
     <script src="/user_asset/js/bootstrap.min.js"></script>
     <script src="/user_asset/js/jquery.nice-select.min.js"></script>
@@ -413,6 +423,8 @@
     <script src="/user_asset/js/mixitup.min.js"></script>
     <script src="/user_asset/js/owl.carousel.min.js"></script>
     <script src="/user_asset/js/main.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
     <script>
@@ -463,47 +475,60 @@
         }
     </script>
 
-    <script>
-        function cartLoad() {
-            console.log('nadakkum')
+<script>
+    async function cartLoad() {
+        console.log('nadakkum')
 
-            const item = document.getElementById("cartBtn");
-            const productId = document.getElementById("product").value;
-            const url = "/addToCart";
+        const item = document.getElementById("cartBtn");
+        const productId = document.getElementById("product").value;
+        const url = "/addToCart";
 
-            const selectedVariant = document.querySelector('.product__details__option__size input[type="radio"]:checked');
-            if (selectedVariant) {
-                const variant = selectedVariant.id;
-                console.log(productId, variant)
-                fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ productId, variant })
-                }).then(response => {
-                    if (response.ok) {
-                        // Redirect to the cart page or do something else after successfully adding the product to the cart
-                        console.log(response)
-                        return response.json();
-                    } else if (response.status == 401) {
-                        // Handle errors if needed
-                        alert("Please Login!!");
+        const selectedVariant = document.querySelector('.product__details__option__size input[type="radio"]:checked');
+        if (selectedVariant) {
+            const variant = selectedVariant.id;
+            console.log(productId, variant)
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ productId, variant })
+            }).then(response => {
+                if (response.ok) {
+                    console.log(response)
+                    return response.json();
+                } else if (response.status == 401) {
+                    Swal.fire({
+                        title: "Error!",
+                        text: "Please Login!!",
+                        icon: "error"
+                    }).then(() => {
                         window.location.href = '/login';
-                    }
-                }).then(data => {
-                    console.log(data)
-                    // Redirect to the cart page or do something else after successfully adding the product to the cart
-                    alert(data.message)
-                    window.location.href = "/shoping-cart";
-                }).catch(error => {
-                    console.error('Error adding product to cart:', error);
+                    });
+                }
+            }).then(async data => {
+                console.log(data)
+                await Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: data.message,
+                    showConfirmButton: false,
+                    timer: 1500
                 });
-            } else {
-                alert("Please select a variant");
-            }
+                window.location.href = "/shoping-cart";
+            }).catch(error => {
+                console.error('Error adding product to cart:', error);
+            });
+        } else {
+            Swal.fire({
+                title: "Error!",
+                text: "Please select a variant.",
+                icon: "error"
+            });
         }
-    </script>
+    }
+</script>
+
 
 
 

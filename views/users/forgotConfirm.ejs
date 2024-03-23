@@ -53,35 +53,45 @@
     <div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
         function submitForm() {
-    const newPass = document.getElementById('newP').value;
-    const conPass = document.getElementById('conNew').value;
-    const email = document.getElementById('email').value;
+            const newPass = document.getElementById('newP').value;
+            const conPass = document.getElementById('conNew').value;
+            const email = document.getElementById('email').value;
 
-    if (newPass !== conPass) {
-        alert("Passwords do not match");
-        return;
-    }
+            if (newPass !== conPass) {
+                Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "Passwords do not match"
+                        });
+                return;
+            }
 
-    fetch('/forgot-confirm', {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ newPass, conPass, email }),
-    })
-    .then(response => {
-        if (response.ok) {
-            window.location.href= '/login';
-        } else {
-            alert('error on changing password')
+            fetch('/forgot-confirm', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ newPass, conPass, email }),
+            })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.href = '/login';
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "error on changing password"
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error); /// redirect or handle error as needed
+                });
         }
-    })
-    .catch(error => {
-        console.error('Error:', error); /// redirect or handle error as needed
-    });
-}
 
     </script>
 </body>

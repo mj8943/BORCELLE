@@ -223,7 +223,7 @@
         </div>
     </div>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
 
@@ -318,16 +318,30 @@
             })
                 .then(response => {
                     if (response.ok) {
-                        alert('Order ' + action + ' successfully.');
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: 'Order ' + action + ' successfully.',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
                         // You can perform additional actions here if needed
                         window.location.reload();
                     } else {
-                        alert('Failed to ' + action + ' order.');
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: 'Failed to ' + action + ' order.'
+                        });
                     }
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    alert('Failed to ' + action + ' order.');
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: 'Failed to ' + action + ' order.'
+                    });
                 });
         }
 
