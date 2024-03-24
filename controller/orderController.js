@@ -16,9 +16,19 @@ const checkout = async (req, res) => {
     const user = await User.findOne({ email: userMail });
     console.log("for checkout", user);
     console.log("checking for checkout", user.address);
-    const products = await Cart.findOne({ userId: userId })
+    const cart = await Cart.findOne({ userId: userId })
       .populate("items.productId")
       .populate("userId");
+      console.log("products");
+
+       const products = cart.items.reduce((acc,curr)=>{
+          console.log(curr);
+      })
+
+      
+      
+      
+      
     let coupon = null;
     if (req.query.coupon) {
       const code = req.query.coupon;
@@ -122,7 +132,7 @@ const orderPlace = async (req, res) => {
     );
     console.log("address founded", selectedAddress);
 
-    const cart = await Cart.findOne({ userId: userId });
+    const cart = await Cart.findOne({ userId: userId, });
     console.log("items in the cart", cart.items);
 
     const items = cart.items;
