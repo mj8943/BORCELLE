@@ -79,6 +79,27 @@
         color: #ddd;
         border-radius: 5px;
     }
+    .form-container {
+    margin-top: 20px;
+}
+
+.form-title {
+    color: blue;
+}
+
+textarea {
+    width: 100%;
+}
+
+.reason-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
 </style>
 
 <body>
@@ -286,17 +307,18 @@
 
         function showForm(action, orderId, itemId) {
             const formHtml = `
-                <div>
-                    <h2 style="color:;">${action} Reason Form</h2>
-                    <form id="${action.toLowerCase()}Form" onsubmit="submit${action}Form(event, '${orderId}', '${itemId}')">
-                        <textarea name="${action.toLowerCase()}Reason" rows="4" cols="50" required placeholder="Enter ${action} reason..."></textarea>
-                        <br>
-                        <button type="submit" class="reasonBtn">${action}</button>
-                    </form>
-                </div>
-            `;
+        <div class="form-container">
+            <h2 class="form-title">${action} Reason Form</h2>
+            <form id="${action.toLowerCase()}Form" onsubmit="submit${action}Form(event, '${orderId}', '${itemId}')">
+                <textarea name="${action.toLowerCase()}Reason" rows="4" cols="50" required placeholder="Enter ${action} reason..."></textarea>
+                <br>
+                <button type="submit" class="reason-btn">${action}</button>
+            </form>
+        </div>
+    `;
             document.getElementById('formContainer').innerHTML = formHtml;
         }
+
 
         function submitCancelForm(event, orderId, itemId) {
             event.preventDefault();
