@@ -7,7 +7,7 @@ const orderController = require ('../controller/orderController');
 
 // middleware
 const { islogin, isLogout} = require('../middleware/authUser');
-
+const  isBlock = require('../middleware/isBlocked');
 
 const { razorPayOrder, verifyPayment } = require("../controller/razorpay");
 
@@ -42,11 +42,12 @@ user_route.get('/shops',userController.loadShop);
 user_route.get('/product-details/:id',userController.productDetails);
 //cart 
 user_route.get('/shoping-cart',islogin,cartController.productCart);
-user_route.post('/addToCart',cartController.productInfo);
+user_route.post('/addToCart',islogin,cartController.productInfo);
 user_route.post('/cart-quantity',islogin,cartController.cartQuantity);
 user_route.delete('/remove-product',islogin,cartController.productRemove);
 //checkout
-user_route.get('/check-out',islogin,orderController.checkout);
+user_route.get('/checkout-precheck',islogin,orderController.checkout);
+user_route.get('/check-out',islogin,orderController.checkoutRender);
 user_route.post('/addaddress',islogin,orderController.addAddress);
 user_route.post('/order-place',islogin,orderController.orderPlace);
 

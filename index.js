@@ -3,7 +3,7 @@ const express = require("express")
 const app= express();
 const session =  require("express-session");
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://127.0.0.1:27017/BORCELLE");
+mongoose.connect(process.env.MONGO_DB+"BORCELLE");
 const nocache = require('nocache')
 const userRoute = require("./routes/userRoute");
 const adminRoute = require("./routes/adminRoute");

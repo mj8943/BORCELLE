@@ -5,6 +5,7 @@ const Order = require("../models/orderModel");
 const Product = require("../models/productModel");
 const Wallet = require("../models/walletModel");
 const Coupon = require("../models/couponModel");
+const Category = require("../models/categoryModel");
 
 const { createInvoice } = require("../utils/createInvoice");
 
@@ -16,19 +17,71 @@ const checkout = async (req, res) => {
     const user = await User.findOne({ email: userMail });
     console.log("for checkout", user);
     console.log("checking for checkout", user.address);
-    const cart = await Cart.findOne({ userId: userId })
+    const products = await Cart.findOne({ userId: userId })
       .populate("items.productId")
       .populate("userId");
-      console.log("products");
+    console.log("products");
+    console.log(products);
 
-       const products = cart.items.reduce((acc,curr)=>{
-          console.log(curr);
-      })
+    for (let product of products.items) {
+      console.log("product in for");
+      console.log(product);
+      console.log(product.productId.is_listed);
+      if (!product.productId.is_listed) {
+        return res
+          .status(400)
+          .json({
+            message: "This product not available please remove and proceed !!",
+          });
+      }
+      console.log("product listed")
+      let categoryName = product.productId.category;
+      let category = await Category.findOne({ name: categoryName });
+      console.log("categories");
+      console.log(categoryName);
+      console.log(category);
+      if (!category.is_listed) {
+        return res
+        .status(400)
+        .json({
+          message:
+          "This category product not available please remove and proceed !!",
+        });
+      }
+      console.log("category listed")
+      let cartVariant = product.variant;
+      let cartQuantity = product.quantity;
 
-      
-      
-      
-      
+      console.log(cartVariant)
+      console.log(cartQuantity)
+      console.log(product.productId.variant[cartVariant])
+
+      if (product.productId.variant[cartVariant] < cartQuantity) {
+        return res
+          .status(400)
+          .json({ message: "Product Stocks not availabe now" });
+      }
+    }
+
+    res.status(200).json({ message: "Checkout page render" });
+    console.log("checkout-pre checking done");
+  } catch (error) {
+    console.log("error on checkout rendering ", error.message);
+  }
+};
+
+const checkoutRender = async (req, res) => {
+  try {
+    const userId = req.session.user._id;
+    const userMail = req.session.user.email;
+    console.log("userId in cart is:", userId);
+    const user = await User.findOne({ email: userMail });
+    console.log("for checkout", user);
+    console.log("checking for checkout", user.address);
+    const products = await Cart.findOne({ userId: userId })
+      .populate("items.productId")
+      .populate("userId");
+    console.log("products");
     let coupon = null;
     if (req.query.coupon) {
       const code = req.query.coupon;
@@ -70,7 +123,6 @@ const addAddress = async (req, res) => {
     }
   } catch (error) {
     console.log("Error on addAddress", error.message);
-    // Handle errors and send a response accordingly
     res.status(500).send("Internal Server Error");
   }
 };
@@ -79,7 +131,7 @@ const orderPlace = async (req, res) => {
   try {
     console.log("placing info", req.body);
     const { addressId, paymentMethod, totalPrice, coupon } = req.body;
-    console.log("coupon",coupon);
+    console.log("coupon", coupon);
     console.log(paymentMethod);
     console.log("totalPrice in order place ", totalPrice);
     const userId = req.session.user;
@@ -87,13 +139,13 @@ const orderPlace = async (req, res) => {
 
     let finalTotalPrice = totalPrice;
 
-   
-    if(paymentMethod == 'COD' && totalPrice > 1000){
+    if (paymentMethod == "COD" && totalPrice > 1000) {
       console.log("COD is not work for total < 1000");
-      res
-          .status(400)
-          .json({ success: false, message: "COD not work for more than Rs.1000 !!!." });
-        return;
+      res.status(400).json({
+        success: false,
+        message: "COD not work for more than Rs.1000 !!!.",
+      });
+      return;
     }
 
     // wallet checking
@@ -132,7 +184,7 @@ const orderPlace = async (req, res) => {
     );
     console.log("address founded", selectedAddress);
 
-    const cart = await Cart.findOne({ userId: userId, });
+    const cart = await Cart.findOne({ userId: userId });
     console.log("items in the cart", cart.items);
 
     const items = cart.items;
@@ -177,7 +229,7 @@ const orderPlace = async (req, res) => {
       expectedDate: expectedDate,
       orderStatus: "Pending",
       total: finalTotalPrice,
-      coupon:coupon,
+      coupon: coupon,
     });
 
     await newOrder.save();
@@ -201,7 +253,7 @@ const greet = async (req, res) => {
   } catch (error) {}
 };
 
-// product invoice 
+// product invoice
 const invoice = async (req, res) => {
   try {
     console.log("invoice");
@@ -253,6 +305,7 @@ const invoice = async (req, res) => {
 
 module.exports = {
   checkout,
+  checkoutRender,
   addAddress,
   orderPlace,
   greet,

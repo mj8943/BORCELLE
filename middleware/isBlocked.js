@@ -1,23 +1,24 @@
 const User = require("../models/userModel");
 
-const isBlocked = async(req,res,next) =>{
+const isBlock = async (req, res, next) => {
     try {
-        if(req.session.user){
-            const{ id } = req.session.user;
+        if (req.session.user) {
+            const { id } = req.session.user;
             const user = await User.findById(id);
-            if(!user.is_blocked){
-                next();
-                return;
-            }
-        }
-        req.session.destroy();
-        res.redirect('/login')
-        return;
-    } catch (error) {
-        console.log(error);
-    }
-}
 
-module.exports = {
-    isBlocked
+            if (user && !user.is_blocked) { // Add a check to ensure user is not null
+                next();
+            } else {
+                req.session.destroy();
+                return res.redirect('/login');
+            }
+        } else {
+            return res.redirect('/login');
+        }
+    } catch (error) {
+        console.log(error.message);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
 };
+
+module.exports = isBlock;

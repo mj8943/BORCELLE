@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BORCELLE-Admin Panel</title>
+    <title>BORCELLE</title>
+
+    <link rel="icon" href="/Favicon.png" type="image/x-icon">
 
     <link rel="stylesheet" href="/admin_asset/assets/css/styles.min.css">
 
@@ -159,7 +161,7 @@
             </div>
             <div
                 style="background-color: rgba(197, 127, 127, 0.414); margin-left: 20px; margin-right: 45px; padding-top: 30px;">
-                <form id="offerForm" action="/admin/add-offer" method="post" onsubmit="return validateForm()">
+                <form id="offerForm" action="/admin/product-offer/add-offer" method="post" onsubmit="return validateForm()">
                     <label for="offerName" class="lab">Enter Offer code:</label><br>
                     <input type="text" id="offerName" name="offerName" placeholder="Offer Name" required class="inp"><br>
                     <label for="validFrom" class="lab">Enter Offer Start Date:</label><br>
