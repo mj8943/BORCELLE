@@ -676,9 +676,11 @@ const userOrderStatus = async (req, res) => {
       );
       console.log("product for wallet", product);
       const productId = product.items[0].productId;
-
+      
       const productData = await Product.findById(productId);
       const price = productData.price;
+      const priceOrg =   product.items[0].quantity * price;
+
       await Wallet.updateOne({ userId: userId }, { $inc: { balance: price } });
 
       // Update wallet history with the reason
@@ -688,7 +690,7 @@ const userOrderStatus = async (req, res) => {
           $push: {
             history: {
               Reason: reason,
-              amount: price,
+              amount: priceOrg,
               transaction: "Credited",
               date: new Date(),
             },
