@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BORCELLE</title>
+  <title>BORCELLE-Admin Panel</title>
 
   <link rel="icon" href="/Favicon.png" type="image/x-icon">
 
@@ -237,7 +237,9 @@
                       </div>
                     </td>
                     <% } %>
-                      <td><button type="button"
+                    <td>
+                        <div style="display: flex;">
+                        <button type="button"
                           class="btn actionbtn <%= product.is_listed ? 'btn-danger':'btn-success'  %>"
                           data-product-id="<%= product._id %>"
                           data-product-state="<%= product.is_listed ? 'List' : 'Unlist' %>" style="min-width: 70px;">
@@ -247,11 +249,12 @@
                           data-product-id="<%= product._id %>" data-product-name="<%= product.name %>"
                           data-product-category="<%= product.category %>" data-product-price="<%= product.price %>"
                           data-product-stocks="<%= product.stocks %>"
-                          data-product-description="<%= product.description %>">
-                          <a href="/admin/edit-product/<%= product._id %>"><img src="/edit-image.jpg" alt="Edit"
+                          data-product-description="<%= product.description %>" style="border: 0; background-color: #fff;">
+                          <a href="/admin/edit-product/<%= product._id %>" style="text-decoration: none;"><img src="/edit-image.jpg" alt="Edit"
                               style="width: 24px; height: 24px;"></a>
                         </button>
 
+                      </div>
                       </td>
               </tr>
               <% }); %>

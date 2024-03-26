@@ -101,16 +101,21 @@ const sendMail = async (name, email, otp) => {
 const insertData = async (req, res) => {
   try {
     const spassword = await secuaredPassword(req.body.password);
+
+
     const user = {
       name: req.body.name,
       email: req.body.email,
       password: spassword,
       mobile: req.body.mobile,
     };
+
     req.session.user = user;
     console.log("session data", req.session.user);
     const otp = generateOtp();
     req.session.otp = otp;
+
+
     if (req.session.user) {
       sendMail(req.session.user.name, req.session.user.email, req.session.otp);
       console.log("data passed for mail");
@@ -162,11 +167,13 @@ const verfyOtp = async (req, res) => {
       mobile: req.session.user.mobile,
       referralCode,
     });
+
     console.log("session", userInfo);
     if (!userInfo) {
       console.log("User not found in verifyOtp");
       return res.render("users/verify", { message: "User not found" });
     }
+
     console.log(typeof enteredOtp);
     console.log(typeof storedOtp);
     if (enteredOtp === storedOtp) {
@@ -178,6 +185,13 @@ const verfyOtp = async (req, res) => {
       });
 
       await wallet.save();
+
+
+      const newCart = new Cart({
+        userId: userInfo._id,
+      });
+
+      await newCart.save()
 
       // referral transactions
       const ref = req.session.ref;

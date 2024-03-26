@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BORCELLE</title>
+  <title>BORCELLE-Admin Panel</title>
 
   <link rel="icon" href="/Favicon.png" type="image/x-icon">
 
@@ -167,7 +167,6 @@
             <tr>
               <th style="background-color: rgb(112, 7, 7);text-align: center;">Category</th>
               <th style="background-color: rgb(112, 7, 7);text-align: center;">Description</th>
-              <th style="background-color: rgb(112, 7, 7);text-align: center;">Offers</th>
               <th style="background-color: rgb(112, 7, 7);text-align: center;">Action</th>
             </tr>
           </thead>
@@ -180,39 +179,15 @@
                 <td>
                   <%= category.description %>
                 </td>
-                <% if(category.discount){ %>
-                  <td>
-                    <%= category.discount.offerName %> &nbsp; offer &nbsp; &#8377;&nbsp;<%=
-                        category.discount.discountOffer %>
-                        <button type="button" class="removeOfferBtn"
-                          style="background-color: rgb(112, 7, 7); color: aliceblue; "
-                          data-category-id="<%= category._id %>">Remove</button>
-                  </td>
-                  <% }else { %>
-                    <td>
-                      <div class="dropdown">
-                        <select class="offerDropdown" data-category-id="<%= category._id %>"
-                          onchange="applyOrRemoveOffer(this)">
-                          <option value="" disabled selected>Select Product Offer</option>
-                          <% offers.forEach(offer=>{ %>
-                            <option value="<%= offer._id %>">
-                              <%= offer.offerName %>&nbsp; offer &nbsp; &#8377; <%= offer.discountOffer %>
-                            </option>
-                            <% }) %>
-                        </select>
-                      </div>
-                    </td>
-                    <% } %>
-                      <td><button type="button"
-                          class="btn actionbtn <%= category.is_listed ? 'btn-danger' : 'btn-success' %>"
-                          data-category-id="<%= category._id %>"
-                          data-category-state="<%= category.is_listed ? 'List' : 'Unlist' %>" style="min-width: 70px;">
-                          <%= category.is_listed ? 'Unlist' : 'List' %>
-                        </button>
-                        <a
-                          href="/admin/edit-category?categoryId=<%= category._id %>&categoryName=<%= category.name %>&categoryDescription=<%= category.description %>"><img
-                            src="/edit-image.jpg" alt="Edit" style="width: 24px; height: 24px;"></a>
-                      </td>
+                <td><button type="button" class="btn actionbtn <%= category.is_listed ? 'btn-danger' : 'btn-success' %>"
+                    data-category-id="<%= category._id %>"
+                    data-category-state="<%= category.is_listed ? 'List' : 'Unlist' %>" style="min-width: 70px;">
+                    <%= category.is_listed ? 'Unlist' : 'List' %>
+                  </button>
+                  <a
+                    href="/admin/edit-category?categoryId=<%= category._id %>&categoryName=<%= category.name %>&categoryDescription=<%= category.description %>"><img
+                      src="/edit-image.jpg" alt="Edit" style="width: 24px; height: 24px;"></a>
+                </td>
               </tr>
               <% }); %>
           </tbody>
@@ -267,19 +242,19 @@
                   });
                 } else {
                   Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: 'Toggle block failed'
-              });
+                    icon: "error",
+                    title: "Oops...",
+                    text: 'Toggle block failed'
+                  });
                 }
               })
               .catch(error => {
                 console.error(error);
                 Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: 'An error occurred during toggle block'
-              });
+                  icon: "error",
+                  title: "Oops...",
+                  text: 'An error occurred during toggle block'
+                });
               });
           });
         });
@@ -321,10 +296,10 @@
                 window.location.reload();
               } else {
                 Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: 'Applying offer failed'
-              });
+                  icon: "error",
+                  title: "Oops...",
+                  text: 'Applying offer failed'
+                });
               }
             })
             .catch(error => {

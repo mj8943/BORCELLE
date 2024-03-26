@@ -228,7 +228,7 @@
 
                                             <% products.items.forEach(product=> { %>
                                                 <% if(product.productId.is_listed==false){ %>
-
+                                                  <tr>
                                                     <td class="product__cart__item">
                                                         <div class="product__cart__item__pic">
                                                             <img src="/productImages/<%= product.productId.image[0] %>"
@@ -251,7 +251,16 @@
                                                     <td>
                                                         <h5 style="color: red;">Currently Unavailable</h5>
                                                     </td>
+                                                    <td></td>
+                                                    <td class="cart__close">
+
+                                                        <button data-itemId="<%= product._id %>"
+                                                            class="fa fa-close removeButton"
+                                                            style="color: #fff; background-color: rgba(112, 20, 20, 0.921); cursor: pointer;"></button>
+                                                    </td>
+                                                </tr>
                                                     <% }else{ %>
+                                                        <tr>
                                                         <td class="product__cart__item">
                                                             <div class="product__cart__item__pic">
                                                                 <img src="/productImages/<%= product.productId.image[0] %>"
@@ -302,7 +311,6 @@
                                                                 class="fa fa-close removeButton"
                                                                 style="color: #fff; background-color: rgba(112, 20, 20, 0.921); cursor: pointer;"></button>
                                                         </td>
-                                                        </tr>
                                                         <% if(product.productId.finalPrice){ %>
                                                             <% totalPrice +=product.productId.finalPrice *
                                                                 product.quantity %>
@@ -310,6 +318,8 @@
                                                                     <% totalPrice +=product.productId.price *
                                                                         product.quantity %>
                                                                         <% } %>
+                                                        </tr>
+
                                                                             <% } %>
                                                                                 <% }) %>
 
