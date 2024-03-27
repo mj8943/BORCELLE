@@ -336,10 +336,14 @@ const sendDashboardData = async (req, res) => {
       { $group: { _id: "$payment", orderCount: { $sum: 1 } } },
     ]);
 
+    console.log("paymentMethods")
+    console.log(paymentMethods)
+
     const payment = {
       paypal:
         paymentMethods.find(({ _id }) => _id == "paypal")?.orderCount ?? 0,
       cod: paymentMethods.find(({ _id }) => _id == "COD")?.orderCount ?? 0,
+      wallet:paymentMethods.find(({ _id }) => _id == "wallet")?.orderCount ?? 0
     };
 
     // sales

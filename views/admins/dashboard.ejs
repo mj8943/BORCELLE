@@ -225,7 +225,12 @@
                           <div class="me-3">
                             <span class="round-8  rounded-circle me-2 d-inline-block"
                               style="background-color: darkgray;"></span>
-                            <span class="fs-2" id="onli">Paypal</span>
+                            <span class="fs-2" id="onli">Online payment</span>
+                          </div>
+                          <div class="me-3">
+                            <span class="round-8  rounded-circle me-2 d-inline-block"
+                              style="background-color: darkgray;"></span>
+                            <span class="fs-2" id="wallet">Wallet</span>
                           </div>
                         </div>
                       </div>
@@ -282,6 +287,7 @@
               <th style="background-color: rgb(112, 7, 7);text-align: center; color: aliceblue;">No.</th>
               <th style="background-color: rgb(112, 7, 7);text-align: center; color: aliceblue">Product ID</th>
               <th style="background-color: rgb(112, 7, 7);text-align: center; color: aliceblue"> Product Name</th>
+              <th style="background-color: rgb(112, 7, 7);text-align: center; color: aliceblue"> Product Category</th>
               <th style="background-color: rgb(112, 7, 7);text-align: center; color: aliceblue">Sellings</th>
             </thead>
             <tbody>
@@ -297,6 +303,11 @@
                     <td>
                       <% product.productDetails.forEach(productDetail=> { %>
                         <%= productDetail.name %>
+                          <% }) %>
+                    </td>
+                    <td>
+                      <% product.productDetails.forEach(productDetail=> { %>
+                        <%= productDetail.category %>
                           <% }) %>
                     </td>
                     <td>

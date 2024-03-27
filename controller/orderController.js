@@ -9,6 +9,8 @@ const Category = require("../models/categoryModel");
 
 const { createInvoice } = require("../utils/createInvoice");
 
+const { ObjectId } = require("mongodb");
+
 const checkout = async (req, res) => {
   try {
     const userId = req.session.user._id;
@@ -28,33 +30,29 @@ const checkout = async (req, res) => {
       console.log(product);
       console.log(product.productId.is_listed);
       if (!product.productId.is_listed) {
-        return res
-          .status(400)
-          .json({
-            message: "This product not available please remove and proceed !!",
-          });
+        return res.status(400).json({
+          message: "This product not available please remove and proceed !!",
+        });
       }
-      console.log("product listed")
+      console.log("product listed");
       let categoryName = product.productId.category;
       let category = await Category.findOne({ name: categoryName });
       console.log("categories");
       console.log(categoryName);
       console.log(category);
       if (!category.is_listed) {
-        return res
-        .status(400)
-        .json({
+        return res.status(400).json({
           message:
-          "This category product not available please remove and proceed !!",
+            "This category product not available please remove and proceed !!",
         });
       }
-      console.log("category listed")
+      console.log("category listed");
       let cartVariant = product.variant;
       let cartQuantity = product.quantity;
 
-      console.log(cartVariant)
-      console.log(cartQuantity)
-      console.log(product.productId.variant[cartVariant])
+      console.log(cartVariant);
+      console.log(cartQuantity);
+      console.log(product.productId.variant[cartVariant]);
 
       if (product.productId.variant[cartVariant] < cartQuantity) {
         return res
@@ -173,6 +171,7 @@ const orderPlace = async (req, res) => {
               amount: finalTotalPrice,
               transaction: "Debited",
               date: new Date(),
+              Reason: "Product purchase",
             },
           },
         }
@@ -187,12 +186,13 @@ const orderPlace = async (req, res) => {
     const cart = await Cart.findOne({ userId: userId });
     console.log("items in the cart", cart.items);
 
-    const items = cart.items;
-
+    const items = cart.items.toObject();
+    console.log(typeof items)
     for (const item of items) {
       const productId = item.productId;
       const variantOfOrderedProduct = item.variant;
       const qtyOfOrderedProduct = item.quantity;
+      const product=await Product.findById(productId)
       console.log(
         "Product ID:",
         productId,
@@ -201,7 +201,9 @@ const orderPlace = async (req, res) => {
         "Quantity:",
         qtyOfOrderedProduct
       );
-
+      console.log(product)
+      item.price=product?.finalPrice||product.price;
+      console.log(item.price)
       const quantity = qtyOfOrderedProduct * -1;
 
       const updateQuery = {};
@@ -219,7 +221,11 @@ const orderPlace = async (req, res) => {
     const expectedDate = new Date(currentDate);
     expectedDate.setDate(expectedDate.getDate() + 6);
     console.log("start");
-
+    console.log("items");
+    items.forEach(item=>{
+      console.log(item)
+    })
+    
     const newOrder = new Order({
       userId: userId,
       userAddress: selectedAddress,
@@ -260,32 +266,57 @@ const invoice = async (req, res) => {
     const { id } = req.params;
     console.log(id);
 
-    const orderDoc = await Order.findById(id);
+    // const orderDoc = await Order.findById(id);
+    const orderDoc = await Order.aggregate([
+      {
+        $unwind: "$items",
+      },
+      {
+        $match: {
+          "items._id": new ObjectId(id),
+        },
+      },
+      {
+        $lookup: {
+          from: "products",
+          localField: "items.productId",
+          foreignField: "_id",
+          as: "product",
+        },
+      },
+    ]);
     console.log(orderDoc);
-    let items = [];
-    orderDoc.items.forEach((item) => {});
+    let items = [
+      {
+        item: orderDoc[0].product[0].name,
+        description: orderDoc[0].items.variant,
+        quantity: orderDoc[0].items.quantity,
+        amount: orderDoc[0].product[0].price*100,
+      },
+    ];
+    // orderDoc.items.forEach((item) => {});
     let subtotal;
     let paid = 0;
     if (orderDoc) {
-      paid = orderDoc.total * 100;
+      paid = orderDoc[0].items.quantity*orderDoc[0].product[0].price * 100;
     }
 
     const invoice = {
       shipping: {
-        name: orderDoc.userAddress.fullname,
-        city: orderDoc.userAddress.city,
-        state: orderDoc.userAddress.state,
+        name: orderDoc[0].userAddress.fullname,
+        city: orderDoc[0].userAddress.city,
+        state: orderDoc[0].userAddress.state,
         country: "India",
-        postal_code: orderDoc.userAddress.pincode,
+        postal_code: orderDoc[0].userAddress.pincode,
       },
       items: items,
-      subtotal: orderDoc.total * 100,
+      subtotal: orderDoc[0].items.quantity*orderDoc[0].product[0].price * 100,
       paid,
       coupon: {
-        code: orderDoc?.coupon?.code || "none",
-        value: orderDoc?.coupon?.discountAmount * 100 || 0,
+        code: orderDoc[0]?.coupon?.code || "none",
+        value: orderDoc[0]?.coupon?.discountAmount * 100 || 0,
       },
-      Order_nr: orderDoc.userAddress.mobile,
+      Order_nr: orderDoc[0].userAddress.mobile,
     };
 
     const generatedPDF = createInvoice(invoice);

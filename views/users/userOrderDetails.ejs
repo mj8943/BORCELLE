@@ -91,9 +91,9 @@
         margin-left: 610px;
     }
 
-    textarea {
+    .mdtext {
         width: 90%;
-        margin-left: 70px;
+        margin-left: 20px;
         padding: 10px;
     }
 
@@ -106,12 +106,18 @@
         cursor: pointer;
         margin-left: 700px;
     }
+    .rsnt{
+        width: 90%;
+        margin-left: 70px;
+        padding: 10px;
+    }
+
 </style>
 
 <body>
     <div style="background-color: rgb(112, 7, 7); color: #fff; text-align: center;
       height: 50px; font-size: xx-large; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-      margin-bottom: 20px; padding-top: 9px;">
+      margin-bottom: 20px; padding-top: 3px;">
         MY ORDER
     </div>
     <a href="/user-orders"><button class="back">Back to Orders</button></a>
@@ -161,12 +167,10 @@
                     <td>
                         <% let totalPrice %>
                             <% if(item.productId.finalPrice){ %>
-                                <% totalPrice=item.productId.finalPrice * item.quantity; %>
-                                    &#8377; <%= totalPrice %><br>
-                                        <p style="font-family:'Times New Roman', Times, serif ; color: brown;">(Offer
-                                            applied)</p>
+                                <% totalPrice=(item?.price||item.productId.finalPrice) * item.quantity; %>
+                                    &#8377; <%= totalPrice %>
                                         <% }else{ %>
-                                            <% totalPrice=item.productId.price * item.quantity; %>
+                                            <% totalPrice=(item?.price||item.productId.finalPrice) * item.quantity; %>
                                                 &#8377; <%= totalPrice %>
                                                     <% } %>
                     </td>
@@ -178,7 +182,7 @@
                             <!-- If order status is Delivered, show Return button -->
                             <button onclick="returnOrder('<%= order._id %>',`<%= item._id %>`)"
                                 class="cancelling">Return</button><br><br>
-                            <button class="invoice" onclick="downloadInvoice()">Invoice</button><br><br>
+                            <button class="invoice" onclick="downloadInvoice(`<%= item._id %>`)">Invoice</button><br><br>
                             <button data-productId='<%= item.productId._id %>' class="rate" data-bs-toggle="modal"
                                 data-bs-target="#staticBackdrop">Rate</button>
                             <% }else if (item.orderStatus==='returned' || item.orderStatus==='cancelled' ) { %>
@@ -241,7 +245,7 @@
                         <label for="rating5">5 star</label>
                         <br><br>
                         <label for="description">Write Your review:</label><br><br>
-                        <textarea name="description" rows="4" cols="50"></textarea>
+                        <textarea class="mdtext" name="description"></textarea>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -256,11 +260,11 @@
 
     <script>
 
-        async function downloadInvoice() {
+        async function downloadInvoice(itemId) {
             try {
-                const orderId = document.querySelector("#orderId").value
+                // const orderId = document.querySelector("#orderId").value
 
-                const response = await fetch(`/invoice/${orderId}`);
+                const response = await fetch(`/invoice/${itemId}`);
 
                 // Check if the response is successful
                 if (response.ok) {
@@ -316,7 +320,7 @@
         <div class="form-container">
             <h2 class="form-title">${action} Reason Form</h2>
             <form id="${action.toLowerCase()}Form" onsubmit="submit${action}Form(event, '${orderId}', '${itemId}')">
-                <textarea name="${action.toLowerCase()}Reason" rows="4" cols="50" required placeholder="Enter ${action} reason..."></textarea>
+                <textarea class="rsnt" name="${action.toLowerCase()}Reason" rows="4" cols="50" required placeholder="Enter ${action} reason..."></textarea>
                 <br>
                 <button type="submit" class="reason-btn">${action}&nbsp;Now</button>
             </form>
@@ -338,42 +342,44 @@
             sendDataToServer(orderId, 'returned', itemId, returnReason);
         }
 
-        function sendDataToServer(orderId, action, itemId, reason) {
-            fetch('/order-details-status', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ orderId, action, itemId, reason })
-            })
-                .then(response => {
-                    if (response.ok) {
-                        Swal.fire({
-                            position: "center",
-                            icon: "success",
-                            title: 'Order ' + action + ' successfully.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                        // You can perform additional actions here if needed
-                        window.location.reload();
-                    } else {
-                        Swal.fire({
-                            icon: "error",
-                            title: "Oops...",
-                            text: 'Failed to ' + action + ' order.'
-                        });
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: 'Failed to ' + action + ' order.'
-                    });
+        async function sendDataToServer(orderId, action, itemId, reason) {
+            try {
+                const response = await fetch('/order-details-status', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ orderId, action, itemId, reason })
                 });
+
+                if (response.ok) {
+                    await Swal.fire({
+                        title: 'Success',
+                        text: 'Order ' + action + ' successfully.',
+                        icon: 'success',
+                        timer: 1500,
+                        showConfirmButton: false
+                    });
+                    // You can perform additional actions here if needed
+                    window.location.reload();
+                } else {
+                    await Swal.fire({
+                        title: 'Error',
+                        text: 'Failed to ' + action + ' order.',
+                        icon: 'error'
+                    });
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                await Swal.fire({
+                    title: 'Error',
+                    text: 'Failed to ' + action + ' order.',
+                    icon: 'error'
+                });
+            }
         }
+
+
 
     </script>
 

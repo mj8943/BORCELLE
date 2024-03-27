@@ -31,7 +31,7 @@ admin_route.post('/add_product', islogin, uploadProductImages, adminController.p
 admin_route.post('/unlist-product',islogin,adminController.productUnlist);
 admin_route.post('/list-product',islogin,adminController.productList);
 admin_route.get('/edit-product/:id',islogin,adminController.editProduct);
-admin_route.post('/add_product', islogin, uploadProductImages, adminController.productAdded);
+admin_route.post('/edit-product', islogin, uploadProductImages, adminController.updateProduct);
 
 // category management
 admin_route.get('/categories',islogin,adminController.categoryLoad);

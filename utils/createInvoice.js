@@ -39,7 +39,7 @@ function generateCustomerInformation(doc, invoice) {
 
   doc
     .fontSize(10)
-    .text("Order Number:", 50, customerInformationTop)
+    .text("Contact Number:", 50, customerInformationTop)
     .font("Helvetica-Bold")
     .text(invoice.Order_nr, 150, customerInformationTop)
     .font("Helvetica")

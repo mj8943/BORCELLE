@@ -9,6 +9,8 @@ $(function () {
     if (rawData.ok) {
       const data = await rawData.json();
       if (data.status === "success") {
+        console.log("data")
+        console.log(data)
         const { customers, payment, sales, salesDetails } = data;
 
         document.getElementById("AmountTotal").innerHTML = sales.totalAmount;
@@ -34,8 +36,11 @@ $(function () {
   function salesGraph(sale, salesDetails) {
     let orderCount = sale.orderCount;
     let label = sale.label;
-const count=orderCount.reduce((accumulator, currentValue) => accumulator + currentValue, 0)
-console.log(count,"count")
+    const count = orderCount.reduce(
+      (accumulator, currentValue) => accumulator + currentValue,
+      0
+    );
+    console.log(count, "count");
 
     // Check if the chart instance is already created
     if (!salesChart) {
@@ -159,8 +164,6 @@ console.log(count,"count")
       },
     };
     new ApexCharts(document.querySelector("#earning"), earning).render();
-
-    
   }
 
   let chart; // Declare a global variable to store the chart instance
@@ -169,6 +172,7 @@ console.log(count,"count")
     console.log("Payment:", payment);
     let paypal = payment.paypal;
     let COD = payment.cod;
+    let wallet = payment.wallet;
     console.log("paypal:", paypal);
     console.log("COD:", COD);
 
@@ -179,8 +183,8 @@ console.log(count,"count")
 
     var breakup = {
       color: "rgb(112, 7, 7)",
-      series: [COD, paypal],
-      labels: ["COD", "paypal"], // Added "Wallet" to labels
+      series: [COD, paypal,wallet],
+      labels: ["COD", "online","wallet"], // Added "Wallet" to labels
       chart: {
         width: 180,
         type: "donut",
@@ -205,7 +209,7 @@ console.log(count,"count")
       legend: {
         show: false,
       },
-      colors: ["rgb(112, 7, 7)", "darkgray"], // Added color for "Wallet"
+      colors: ["rgb(112, 7, 7)", "darkgray","rgb(224,224,224)"], // Added color for "Wallet"
       responsive: [
         {
           breakpoint: 991,
@@ -224,11 +228,8 @@ console.log(count,"count")
 
     chart = new ApexCharts(document.querySelector("#breakup"), breakup);
     chart.render();
-
   }
 
-
-  
   // Vanilla JavaScript
   window.addEventListener("load", () => {
     fetchDashBoardData("today");
