@@ -1,12 +1,17 @@
 require("dotenv").config()
 const express = require("express")
-const app= express();
+const app = express();
 const session =  require("express-session");
 const mongoose = require("mongoose");
-mongoose.connect(process.env.MONGO_DB+"BORCELLE");
+// mongoose.connect(process.env.MONGO_DB+"BORCELLE");
 const nocache = require('nocache')
 const userRoute = require("./routes/userRoute");
 const adminRoute = require("./routes/adminRoute");
+const connectDB = require("./utils/db");
+
+
+connectDB();
+
 
 app.use(session({
     secret: 'your-secret-key',
